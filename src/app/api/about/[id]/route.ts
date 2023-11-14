@@ -1,6 +1,6 @@
+import AboutModel from "@/app/models/about";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
-import EducationModel from "@/app/models/education";
 
 ///DELETE
 export async function DELETE(
@@ -11,19 +11,16 @@ export async function DELETE(
   try {
     await Auth(req);
     await dbConnect();
-    const result = await EducationModel.findOneAndDelete({ _id: uuid });
+    const result = await AboutModel.findOneAndDelete({ designation: uuid });
     if (!result) {
       return Response.json({ error: "Item Not Found" }, { status: 404 });
     }
     return Response.json(
-      { status: "Education data deleted successfully" },
+      { status: "Data deleted successfully" },
       { status: 200 }
     );
   } catch (error: any) {
     if (error.name === "CastError") {
-      return Response.json({ error: error.message }, { status: 400 });
-    }
-    if (error.name === "ValidationError") {
       return Response.json({ error: error.message }, { status: 400 });
     }
     if (error.status === 401) {
@@ -39,16 +36,16 @@ export async function DELETE(
 ///UPDATE
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string }; education: any }
+  { params }: { params: { id: string }; aboutData: any }
 ) {
   const uuid = params.id;
-  const education = await req.json();
+  const aboutData = await req.json();
   try {
     await Auth(req);
     await dbConnect();
-    const result = await EducationModel.findOneAndUpdate(
-      { _id: uuid },
-      education,
+    const result = await AboutModel.findOneAndUpdate(
+      { designation: uuid },
+      aboutData,
       {
         new: true,
         runValidators: true,
@@ -62,11 +59,11 @@ export async function PUT(
     if (error.name === "CastError") {
       return Response.json({ error: error.message }, { status: 400 });
     }
-    if (error.name === "ValidationError") {
-      return Response.json({ error: error.message }, { status: 400 });
-    }
     if (error.status === 401) {
       return Response.json({ Status: "Access Unauthorized" }, { status: 401 });
+    }
+    if (error.name === "ValidationError") {
+      return Response.json({ error: error.message }, { status: 400 });
     }
     return Response.json(
       { Status: "Something went wrong during update" },

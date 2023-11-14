@@ -1,6 +1,7 @@
+import ExperienceModel from "@/app/models/experience";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
-import EducationModel from "@/app/models/education";
+import { getDuration } from "@/app/Utils/functions";
 
 ///DELETE
 export async function DELETE(
@@ -11,12 +12,12 @@ export async function DELETE(
   try {
     await Auth(req);
     await dbConnect();
-    const result = await EducationModel.findOneAndDelete({ _id: uuid });
+    const result = await ExperienceModel.findOneAndDelete({ _id: uuid });
     if (!result) {
       return Response.json({ error: "Item Not Found" }, { status: 404 });
     }
     return Response.json(
-      { status: "Education data deleted successfully" },
+      { status: "Data deleted successfully" },
       { status: 200 }
     );
   } catch (error: any) {
@@ -39,16 +40,17 @@ export async function DELETE(
 ///UPDATE
 export async function PUT(
   req: Request,
-  { params }: { params: { id: string }; education: any }
+  { params }: { params: { id: string }; experience: any }
 ) {
   const uuid = params.id;
-  const education = await req.json();
+  const experience = await req.json();
   try {
     await Auth(req);
     await dbConnect();
-    const result = await EducationModel.findOneAndUpdate(
+    experience.duration = getDuration(experience.startDate, experience.endDate);
+    const result = await ExperienceModel.findOneAndUpdate(
       { _id: uuid },
-      education,
+      experience,
       {
         new: true,
         runValidators: true,
