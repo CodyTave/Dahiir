@@ -1,3 +1,5 @@
+import { writeFile } from "fs/promises";
+
 type Duration = {
   years: number;
   months: number;
@@ -44,4 +46,38 @@ export function aboutObject(arr: { designation: string; content: string }[]) {
   });
 
   return result;
+}
+
+export function formDataObject(
+  formData: FormData
+): Record<string, string | string[]> {
+  const formDataObject: Record<string, string | string[]> = {};
+
+  formData.forEach((value, key) => {
+    if (!(value instanceof File)) {
+      formDataObject[key] = value.toString();
+    }
+  });
+
+  return formDataObject;
+}
+
+export async function handleFormData(formData: FormData) {
+  const returnObject = formDataObject(formData);
+  const links: string[] = [];
+  formData.forEach(async (value, key) => {
+    if (value instanceof File) {
+      try {
+        const fileBuffer = Buffer.from(await value.arrayBuffer());
+        const path = `./Photos/${value.name}`; // Replace with actual file link
+        await writeFile(path, fileBuffer);
+        links.push(path);
+      } catch (error: any) {
+        throw error;
+      }
+    }
+  });
+  returnObject.images = links;
+
+  return returnObject;
 }

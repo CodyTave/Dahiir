@@ -1,3 +1,4 @@
+import { handleFormData } from "@/app/Utils/functions";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
 import ProjectModel from "@/app/models/project";
@@ -22,10 +23,11 @@ export async function GET(req: NextRequest) {
 ///CREATE
 // prettier-ignore
 export async function POST(req: Request) {
-  const project = await req.formData();
+  const FormDataproject = await req.formData();
   try {
     await Auth(req);
     await dbConnect();
+    const project = await handleFormData(FormDataproject)
     const newEducationData = new ProjectModel(project);
     const savedEducationData = await newEducationData.save();
     return Response.json(savedEducationData, {

@@ -3,7 +3,7 @@ import mongoose, { Document, Schema, model } from "mongoose";
 export interface project extends Document {
   title: string;
   description: string;
-  category: string[];
+  categories: string[];
   role?: string;
   technologiesUsed?: string[];
   clientOrCompany?: string;
@@ -19,7 +19,7 @@ const ProjectSchema = new Schema<project>(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
-    category: { type: [String], required: true },
+    categories: { type: [String], required: true },
     role: String,
     technologiesUsed: [String],
     clientOrCompany: String,
