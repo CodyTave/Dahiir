@@ -1,6 +1,27 @@
 import ProjectModel from "@/app/models/project";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
+import { handleFormData } from "@/app/Utils/functions";
+
+///READ ONE
+export async function GET(
+  req: Request,
+  { params }: { params: { id: string } }
+) {
+  try {
+    await dbConnect();
+    const result = await ProjectModel.findOne({ _id: params.id });
+    if (!result) {
+      return Response.json({ error: "Item Not Found" }, { status: 404 });
+    }
+    return Response.json(result);
+  } catch (error: any) {
+    if (error.name === "CastError") {
+      return Response.json({ error: error.message }, { status: 400 });
+    }
+    return Response.json({ Status: "Something went Wrong" }, { status: 500 });
+  }
+}
 
 ///DELETE
 export async function DELETE(
@@ -42,14 +63,20 @@ export async function PUT(
   { params }: { params: { id: string }; project: any }
 ) {
   const uuid = params.id;
-  const project = await req.json();
+  const project = await req.formData();
   try {
     await Auth(req);
     await dbConnect();
-    const result = await ProjectModel.findOneAndUpdate({ _id: uuid }, project, {
-      new: true,
-      runValidators: true,
-    });
+    const prev = await ProjectModel.findOne({ _id: uuid }, { _id: 0 });
+    const updatedProject = await handleFormData(project, prev);
+    const result = await ProjectModel.findOneAndUpdate(
+      { _id: uuid },
+      updatedProject,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
     if (!result) {
       return Response.json({ error: "Item Not Found" }, { status: 404 });
     }

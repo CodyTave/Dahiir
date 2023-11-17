@@ -41,6 +41,7 @@ export async function POST(req: Request) {
       if (error.status === 401) {
        return Response.json({ Status: "Access Unauthorized" }, { status: 401 });
       }
+      console.log(error)
       return Response.json({ Status: "Something went Wrong" }, { status: 500 });
     }
   }

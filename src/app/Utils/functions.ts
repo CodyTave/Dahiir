@@ -49,35 +49,52 @@ export function aboutObject(arr: { designation: string; content: string }[]) {
 }
 
 export function formDataObject(
-  formData: FormData
+  formData: FormData,
+  prevObj?: any
 ): Record<string, string | string[]> {
-  const formDataObject: Record<string, string | string[]> = {};
-
+  const formDataObject: Record<string, string | string[]> = prevObj || {};
   formData.forEach((value, key) => {
-    if (!(value instanceof File)) {
-      formDataObject[key] = value.toString();
+    if (!formDataObject[key]) {
+      if (!(value instanceof File)) {
+        formDataObject[key] = value.toString();
+      }
+    } else {
+      if (!Array.isArray(formDataObject[key])) {
+        formDataObject[key] = [
+          formDataObject[key].toString(),
+          value.toString(),
+        ];
+      } else {
+        if (!(prevObj[key] as string[]).includes(value.toString()))
+          (formDataObject[key] as string[]).push(value.toString());
+      }
     }
   });
 
   return formDataObject;
 }
 
-export async function handleFormData(formData: FormData) {
-  const returnObject = formDataObject(formData);
-  const links: string[] = [];
-  formData.forEach(async (value, key) => {
-    if (value instanceof File) {
-      try {
-        const fileBuffer = Buffer.from(await value.arrayBuffer());
-        const path = `./Photos/${value.name}`; // Replace with actual file link
-        await writeFile(path, fileBuffer);
-        links.push(path);
-      } catch (error: any) {
-        throw error;
-      }
-    }
-  });
+export async function handleFormData(formData: FormData, prevObj?: any) {
+  const returnObject = formDataObject(formData, prevObj);
+  const images = formData.getAll("images");
+  const links: string[] = (prevObj?.images as string[]) || [];
+  await Promise.all(
+    images.map(async (img) => {
+      const filePath = await handleFile(img as File);
+      links.push(filePath);
+    })
+  );
   returnObject.images = links;
-
   return returnObject;
+}
+
+export async function handleFile(file: File) {
+  try {
+    const fileBuffer = Buffer.from(await file.arrayBuffer());
+    const path = `./Photos/${file.name}`;
+    await writeFile(path, fileBuffer);
+    return path;
+  } catch (error: any) {
+    throw error;
+  }
 }
