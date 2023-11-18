@@ -2,6 +2,7 @@ import ProjectModel from "@/app/models/project";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
 import { handleFormData } from "@/app/Utils/functions";
+import { NextRequest } from "next/server";
 
 ///READ ONE
 export async function GET(
@@ -59,15 +60,19 @@ export async function DELETE(
 
 ///UPDATE
 export async function PUT(
-  req: Request,
+  req: NextRequest,
   { params }: { params: { id: string }; project: any }
 ) {
   const uuid = params.id;
   const project = await req.formData();
+  const Concat = req.nextUrl.searchParams.get("Concat");
   try {
     await Auth(req);
     await dbConnect();
-    const prev = await ProjectModel.findOne({ _id: uuid }, { _id: 0 });
+    const prev =
+      Concat?.toLowerCase() === "true"
+        ? await ProjectModel.findOne({ _id: uuid }, { _id: 0 })
+        : undefined;
     const updatedProject = await handleFormData(project, prev);
     const result = await ProjectModel.findOneAndUpdate(
       { _id: uuid },
