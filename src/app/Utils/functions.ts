@@ -66,7 +66,9 @@ export function formDataObject(
         ];
       } else {
         if (!(prevObj[key] as string[]).includes(value.toString()))
-          (formDataObject[key] as string[]).push(value.toString());
+          if (!(value instanceof File)) {
+            (formDataObject[key] as string[]).push(value.toString());
+          }
       }
     }
   });
@@ -77,14 +79,16 @@ export function formDataObject(
 export async function handleFormData(formData: FormData, prevObj?: any) {
   const returnObject = formDataObject(formData, prevObj);
   const images = formData.getAll("images");
-  const links: string[] = (prevObj?.images as string[]) || [];
-  await Promise.all(
-    images.map(async (img) => {
-      const filePath = await handleFile(img as File);
-      links.push(filePath);
-    })
-  );
-  returnObject.images = links;
+  if (images.length !== 0) {
+    const links: string[] = (prevObj?.images as string[]) || [];
+    await Promise.all(
+      images.map(async (img) => {
+        const filePath = await handleFile(img as File);
+        links.push(filePath);
+      })
+    );
+    returnObject.images = links;
+  }
   return returnObject;
 }
 

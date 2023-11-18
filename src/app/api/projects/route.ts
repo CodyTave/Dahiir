@@ -10,12 +10,17 @@ export async function GET(req: NextRequest) {
   const Category = req.nextUrl.searchParams.get("Category");
   const Year = req.nextUrl.searchParams.get("Year");
   const Technology = req.nextUrl.searchParams.get("Technology");
-  const query =  {};
+  const query = {
+    ...(Technology && { technologiesUsed: { $regex: new RegExp(Technology, 'i') } }),
+    ...(Year && { year: Year }),
+    ...(Category && { categories: { $regex: new RegExp(Category, 'i') } }),
+  };
   try {
     await dbConnect();
     const education = await ProjectModel.find(query);
     return Response.json(education);
   } catch (error: any) {
+    console.log(error)
     return Response.json({ Status: "Something went Wrong" }, { status: 500 });
   }
 }
