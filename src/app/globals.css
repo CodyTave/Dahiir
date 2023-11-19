@@ -4,6 +4,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: #fbfbfb;
 }
 .inter {
   font-family: "inter", sans-serif;
@@ -34,6 +35,19 @@ body {
     opacity: 1;
     filter: blur(0px);
   }
+}
+.overlay {
+  z-index: 5;
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  background-color: #cfcfcf;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+.grad {
+  background: linear-gradient(180deg, #4eb162 0%, #4e6bb1 100%);
 }
 
 .text-grbl {
