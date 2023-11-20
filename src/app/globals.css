@@ -5,6 +5,7 @@
 body {
   font-family: "Poppins", sans-serif;
   background-color: #fbfbfb;
+  color: #303030;
 }
 .inter {
   font-family: "inter", sans-serif;
@@ -37,7 +38,7 @@ body {
   }
 }
 .overlay {
-  z-index: 5;
+  z-index: 50;
   position: fixed;
   width: 30px;
   height: 30px;
@@ -67,4 +68,15 @@ body {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.bg-insta {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
 }

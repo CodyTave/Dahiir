@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import GlobalContext from "./context/GlobalContext";
+import Navbar from "./components/Navbar";
 export const metadata: Metadata = {
   title: "Dahiir ",
   description:
@@ -28,7 +30,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <GlobalContext>
+          <Navbar />
+          <main className="px-12 py-5">{children}</main>
+        </GlobalContext>
+      </body>
     </html>
   );
 }
