@@ -49,15 +49,7 @@ export default function Home() {
         >
           Dahiir.dev
         </h1>
-        <p className="font-medium inter">Very Soon</p>
-        <div
-          onMouseLeave={() => setCursorVariant("default")}
-          onMouseEnter={() => setCursorVariant("text")}
-          className=" w-80 h-64 bg-dark-0 rounded-md text-dark-2 px-5 py-8 flex flex-col gap-5 mt-10"
-        >
-          <h2 className="text-light-0 text-3xl font-bold">I Design</h2>
-          <p>Pretty things and enjoyable Unique experiences</p>
-        </div>
+        <p className="font-medium inter">Soon</p>
       </main>
     </>
   );
