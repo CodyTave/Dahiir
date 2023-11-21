@@ -16,7 +16,7 @@ export default function Painting() {
     <div
       onMouseEnter={() => handleHov(true)}
       onMouseLeave={() => handleHov(false)}
-      className="flex rounded-md relative ml-auto w-fit overflow-hidden"
+      className="flex rounded-md relative ml-auto w-fit h-80 overflow-hidden"
     >
       <Image alt="" src={painting} />
       <Image

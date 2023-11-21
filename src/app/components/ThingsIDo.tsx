@@ -26,24 +26,22 @@ export default function ThingsIDo() {
   return (
     <div>
       <h1 className="flex justify-center text-3xl font-bold">Things I Do ?</h1>
-      <div className="flex justify-center mt-16 ">
-        <div className="flex flex-wrap justify-center gap-16 ">
-          {Cards.map(({ id, title, desc, zelij }, index) => (
-            <div
-              key={id}
-              className="flex flex-col gap-5 h-64 bg-dark-3 text-light-0/95 relative w-72 px-6 py-8 rounded-md overflow-hidden"
-            >
-              <span className="text-3xl font-bold">{title}</span>
-              <span className="text-light-1">{desc}</span>
-              <Zelij
-                className={`absolute w-40 opacity-30 -right-10 -bottom-20 patt${
-                  (index + 1) % 2
-                }`}
-                nb={zelij}
-              />
-            </div>
-          ))}
-        </div>
+      <div className="flex flex-wrap justify-center gap-20 mt-16 ">
+        {Cards.map(({ id, title, desc, zelij }, index) => (
+          <div
+            key={id}
+            className="flex flex-col gap-5 h-64 bg-dark-3 text-light-0/95 relative w-72 px-6 py-8 rounded-md overflow-hidden"
+          >
+            <span className="text-3xl font-bold">{title}</span>
+            <span className="text-light-1">{desc}</span>
+            <Zelij
+              className={`absolute w-40 opacity-30 -right-10 -bottom-20 patt${
+                (index + 1) % 2
+              }`}
+              nb={zelij}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

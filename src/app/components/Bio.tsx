@@ -10,10 +10,7 @@ export default async function Bio() {
   const data = await getData();
   return (
     <div className="max-w-lg mx-auto my-auto pb-8">
-      <p className="relative">
-        <span>{data.Bio}</span>
-        <div className="-top-5 -left-5 w-16 h-16 rounded-full absolute bg-light-0 mix-blend-difference" />
-      </p>
+      <p className="text-lg">{data.Bio}</p>
       <span className="text-dark-3 font-bold flex justify-end gap-1 mt-5">
         <span className="text-dark-2">Oussama </span>Dahiir
       </span>
