@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GlobalContextStore } from "./store";
 import { motion } from "framer-motion";
 
@@ -12,13 +12,13 @@ export default function GlobalContext({
   const [Variant, setVariant] = useState("default");
   const [inactive, setInactive] = useState(false);
   const [cursorOn, setCursorOn] = useState("on");
+  const timerId = useRef<NodeJS.Timeout>();
   useEffect(() => {
     const cachedState = localStorage.getItem("cursor");
     if (cachedState) {
       setCursorOn(cachedState);
     }
   }, []);
-  let timerId: NodeJS.Timeout;
   const variants = {
     default: {
       height: 30,
@@ -63,8 +63,8 @@ export default function GlobalContext({
         x: e.clientX,
         y: e.clientY,
       });
-      clearTimeout(timerId);
-      timerId = setTimeout(() => {
+      clearTimeout(timerId.current);
+      timerId.current = setTimeout(() => {
         setInactive(true);
       }, 1500);
     };
@@ -73,7 +73,7 @@ export default function GlobalContext({
 
     return () => {
       window.removeEventListener("mousemove", mouseMove);
-      clearTimeout(timerId);
+      clearTimeout(timerId.current);
     };
   }, []);
 

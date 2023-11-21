@@ -7,6 +7,7 @@ export default function Zelij({
 }) {
   const zelijs = [
     <svg
+      key={1}
       className={className}
       width="204"
       height="204"
@@ -22,6 +23,7 @@ export default function Zelij({
       />
     </svg>,
     <svg
+      key={2}
       className={className}
       width="235"
       height="232"
@@ -299,6 +301,7 @@ export default function Zelij({
       />
     </svg>,
     <svg
+      key={3}
       className={className}
       width="193"
       height="193"

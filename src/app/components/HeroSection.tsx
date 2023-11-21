@@ -15,7 +15,7 @@ export default function HeroSection() {
       setIndex((prevIndex) => (prevIndex + 1) % Variants.length);
     }, 4000);
     return () => clearInterval(intervalId);
-  }, []);
+  }, [Variants.length]);
 
   return (
     <div className="flex flex-col justify-center sm:mt-28 mt-16 ">
