@@ -1,7 +1,11 @@
+"use client";
 import Zelij from "@/assets/extra/Zelij";
 import React from "react";
+import { useGlobalContext } from "../context/store";
 
 export default function ThingsIDo() {
+  const { setVariant } = useGlobalContext();
+
   const Cards: { id: string; title: string; desc: string; zelij: 1 | 2 | 3 }[] =
     [
       {
@@ -29,6 +33,8 @@ export default function ThingsIDo() {
       <div className="flex flex-wrap justify-center gap-20 mt-16 ">
         {Cards.map(({ id, title, desc, zelij }, index) => (
           <div
+            onMouseEnter={() => setVariant("text")}
+            onMouseLeave={() => setVariant("default")}
             key={id}
             className="flex flex-col gap-5 h-64 bg-dark-3 text-light-0/95 relative w-72 px-6 py-8 rounded-md overflow-hidden"
           >

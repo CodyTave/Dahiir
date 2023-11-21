@@ -22,7 +22,7 @@ export default function AdvNav({ close }: { close: () => void }) {
       initial={{ top: "-100%" }}
       animate={{ top: 0 }}
       exit={{ top: "-100%" }}
-      className={`fixed w-full h-[100dvh] top-0 left-0 bg-dark-0 text-light-0  px-12 py-5 flex flex-col gap-12 transall z-40`}
+      className={`fixed w-full  h-full top-0 left-0 bg-dark-0 text-light-0  px-12 py-5 flex flex-col gap-12 transall z-40`}
     >
       <Zelij
         className="absolute w-28 opacity-25 -right-10 top-20 patt1 "
