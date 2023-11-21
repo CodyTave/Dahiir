@@ -8,11 +8,17 @@ export default function GlobalContext({
 }: {
   children: React.ReactNode;
 }) {
-  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [cursor, setCursor] = useState({ x: 0, y: -25 });
   const [Variant, setVariant] = useState("default");
   const [inactive, setInactive] = useState(false);
+  const [cursorOn, setCursorOn] = useState("on");
+  useEffect(() => {
+    const cachedState = localStorage.getItem("cursor");
+    if (cachedState) {
+      setCursorOn(cachedState);
+    }
+  }, []);
   let timerId: NodeJS.Timeout;
-
   const variants = {
     default: {
       height: 30,
@@ -25,14 +31,28 @@ export default function GlobalContext({
       width: 100,
       x: cursor.x - 50,
       y: cursor.y - 50,
-      backgroundColor: "white",
+      backgroundColor: "#fff",
+    },
+    painting: {
+      height: 150,
+      width: 150,
+      x: cursor.x - 50,
+      y: cursor.y - 50,
+      mixBlendMode: "multiply",
+    },
+    small: {
+      height: 10,
+      width: 10,
+      x: cursor.x - 5,
+      y: cursor.y - 5,
+      backgroundColor: "#fff",
     },
     nav: {
       height: 40,
       width: 60,
       x: cursor.x - 30,
       y: cursor.y - 20,
-      backgroundColor: "white",
+      backgroundColor: "#fff",
       borderRadius: 0,
     },
   };
@@ -46,7 +66,7 @@ export default function GlobalContext({
       clearTimeout(timerId);
       timerId = setTimeout(() => {
         setInactive(true);
-      }, 2500);
+      }, 1500);
     };
 
     window.addEventListener("mousemove", mouseMove);
@@ -58,10 +78,12 @@ export default function GlobalContext({
   }, []);
 
   return (
-    <GlobalContextStore.Provider value={{ Variant, setVariant }}>
-      {localStorage.getItem("cursor") === "on" && (
+    <GlobalContextStore.Provider
+      value={{ Variant, setVariant, cursorOn, setCursorOn }}
+    >
+      {cursorOn === "on" && (
         <motion.div
-          className={`overlay fadeInBlur ${
+          className={`overlay  ${
             inactive ? "opacity-0" : "opacity-100"
           } transition-opacity duration-500`}
           animate={(variants as any)[Variant] || variants.default}

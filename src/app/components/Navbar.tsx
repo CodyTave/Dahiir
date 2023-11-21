@@ -34,6 +34,8 @@ export default function Navbar() {
         ))}
         <Bars3Icon
           onClick={() => setToggle(true)}
+          onMouseEnter={() => setVariant("small")}
+          onMouseLeave={() => setVariant("default")}
           className="w-5 h-5 cursor-pointer"
         />
       </ul>

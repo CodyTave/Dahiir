@@ -1,17 +1,17 @@
+"use client";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/20/solid";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useGlobalContext } from "../context/store";
 
 const TOGGLE_CLASSES =
   "text-sm font-medium flex items-center gap-2 px-3  py-1.5 transition-colors relative z-10 shrink-0";
 
 const SliderToggle = () => {
-  const init = localStorage.getItem("cursor") || "on";
-  const [cursorState, setCursorState] = useState(init);
-  useEffect(() => {
-    localStorage.setItem("cursor", cursorState);
-  }, [cursorState]);
-
+  const { setCursorOn, cursorOn } = useGlobalContext();
+  function handleChange(arg: string) {
+    setCursorOn(arg);
+    localStorage.setItem("cursor", arg);
+  }
   return (
     <motion.div
       initial={{ opacity: 0, x: 10 }}
@@ -23,27 +23,23 @@ const SliderToggle = () => {
       <div className="relative flex w-fit items-center rounded-full">
         <button
           className={`${TOGGLE_CLASSES} ${
-            cursorState === "on" ? "text-white" : "text-slate-300"
+            cursorOn === "on" ? "text-white" : "text-slate-300"
           }`}
-          onClick={() => {
-            setCursorState("on");
-          }}
+          onClick={() => handleChange("on")}
         >
           <CheckIcon className="relative z-10 text-lg md:text-sm text-light-0 w-5 h-5" />
           <span className="relative z-10">On</span>
         </button>
         <button
           className={`${TOGGLE_CLASSES} text-light-0`}
-          onClick={() => {
-            setCursorState("off");
-          }}
+          onClick={() => handleChange("off")}
         >
           <XMarkIcon className="relative z-10 text-lg md:text-sm text-light-0 w-5 h-5" />
           <span className="relative z-10">Off</span>
         </button>
         <div
           className={`absolute inset-0 z-0 flex ${
-            cursorState === "off" ? "justify-end" : "justify-start"
+            cursorOn === "off" ? "justify-end" : "justify-start"
           }`}
         >
           <motion.span

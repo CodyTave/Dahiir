@@ -6,6 +6,7 @@ body {
   font-family: "Poppins", sans-serif;
   background-color: #fbfbfb;
   color: #303030;
+  min-width: 320px;
 }
 .inter {
   font-family: "inter", sans-serif;
@@ -19,6 +20,16 @@ body {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   transition-duration: 0.5s;
+}
+.transall-slow {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition-duration: 2s;
+}
+.transall-slow:hover {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition-duration: 2s;
 }
 .fadeInBlur {
   animation-name: fadeBlur;
@@ -79,4 +90,19 @@ body {
     #d6249f 60%,
     #285aeb 90%
   );
+}
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.patt1 {
+  animation: rotate360 50s linear infinite;
+}
+.patt0 {
+  animation: rotate360 40s linear infinite reverse;
 }

@@ -5,6 +5,9 @@ import { navLinks, socialLinks } from "../constants/constants";
 import { useGlobalContext } from "../context/store";
 import { useState } from "react";
 import SliderToggle from "./SliderToggle";
+import Image from "next/image";
+import { zlg1, zlg2 } from "@/assets";
+import Zelij from "@/assets/extra/Zelij";
 
 export default function AdvNav({ close }: { close: () => void }) {
   const { setVariant } = useGlobalContext();
@@ -18,9 +21,17 @@ export default function AdvNav({ close }: { close: () => void }) {
     <motion.div
       initial={{ top: "-100%" }}
       animate={{ top: 0 }}
-      exit={{ top: "100%" }}
-      className={`fixed w-full h-full top-0 left-0 bg-dark-0 text-light-0  px-12 py-5 flex flex-col gap-12 transall z-40`}
+      exit={{ top: "-100%" }}
+      className={`fixed w-full h-[100dvh] top-0 left-0 bg-dark-0 text-light-0  px-12 py-5 flex flex-col gap-12 transall z-40`}
     >
+      <Zelij
+        className="absolute w-28 opacity-25 -right-10 top-20 patt1 "
+        nb={1}
+      />
+      <Zelij
+        className="absolute w-16 opacity-25 right-5 top-44 patt2 "
+        nb={1}
+      />
       <AnimatePresence mode="wait">
         {bg && (
           <motion.div
