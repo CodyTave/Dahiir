@@ -23,8 +23,8 @@ export default function MethodDoc({
         <h3 className={`text-3xl font-bold ${methodColor}`}>{method}</h3>
         <h4 className="text-3xl font-bold">{title}</h4>
       </div>
-      <div className="flex justify-between bg-light-2 p-3 px-5 rounded-md">
-        <span className="font-medium font-sans xs:text-base text-sm">
+      <div className="flex justify-between gap-3 bg-light-2 p-3 px-5 rounded-md">
+        <span className="font-medium font-sans xs:text-base text-xs">
           {Url}
         </span>
         <CopyToCLip text={Url} />

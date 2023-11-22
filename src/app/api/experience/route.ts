@@ -1,4 +1,4 @@
-import { getDuration } from "@/app/Utils/functions";
+import { getDuration } from "@/app/Utils/apiFunctions";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
 import ExperienceModel, { experience } from "@/app/models/experience";

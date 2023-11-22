@@ -1,7 +1,7 @@
 import ExperienceModel from "@/app/models/experience";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
-import { getDuration } from "@/app/Utils/functions";
+import { getDuration } from "@/app/Utils/apiFunctions";
 
 ///DELETE
 export async function DELETE(

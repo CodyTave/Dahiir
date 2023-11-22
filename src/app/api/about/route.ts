@@ -1,4 +1,4 @@
-import { aboutObject } from "@/app/Utils/functions";
+import { aboutObject } from "@/app/Utils/apiFunctions";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
 import AboutModel from "@/app/models/about";
