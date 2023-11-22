@@ -24,7 +24,7 @@ export const InputWidth = (inputValue: string, long?: boolean): string => {
     .split("")
     .reduce((width, char) => width + getTextWidth(char), 0);
 
-  const maxWidth = long ? 400 : 200;
+  const maxWidth = long ? 400 : 250;
   const calculatedWidth = Math.min(totalWidth, maxWidth);
 
   return `${calculatedWidth + 5}px`;

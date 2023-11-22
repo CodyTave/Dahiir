@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Signature from "@/assets/extra/Signature";
 import Button from "./Button";
+import Link from "next/link";
 export default function HeroSection() {
   const { setVariant } = useGlobalContext();
   const Constant = "Creative";
   const Variants = ["Designer", "Developer"];
-  const subDesc = "the Right way of engineering solutions";
+  const subDesc = "The Right way of engineering solutions";
   const [index, setIndex] = useState(0);
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -48,8 +49,12 @@ export default function HeroSection() {
         </p>
       </div>
       <div className="flex xs:flex-row flex-col justify-center gap-5 mt-5">
-        <Button>Get Started</Button>
-        <Button light>Contact</Button>
+        <Button>
+          <Link href="/documentation">Get Started</Link>
+        </Button>
+        <Button light>
+          <Link href="/contact">Contact</Link>
+        </Button>
       </div>
     </div>
   );

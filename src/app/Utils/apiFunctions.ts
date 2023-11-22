@@ -42,7 +42,26 @@ export function getDuration(startDate: Date, endDate: Date | null): string {
 export function aboutObject(arr: { designation: string; content: string }[]) {
   const result: { [key: string]: string } = {};
   arr.forEach((item) => {
-    result[item.designation] = item.content;
+    if (item.designation === "Age") {
+      const [day, month, year] = item.content.split("-");
+      const birthDate = new Date(
+        parseInt(year),
+        parseInt(month),
+        parseInt(day)
+      );
+      const currentDate = new Date();
+      let age = currentDate.getFullYear() - birthDate.getFullYear();
+      if (
+        currentDate.getMonth() < birthDate.getMonth() ||
+        (currentDate.getMonth() === birthDate.getMonth() &&
+          currentDate.getDate() < birthDate.getDate())
+      ) {
+        age--;
+      }
+      result["Age"] = `${age} Years`;
+    } else {
+      result[item.designation] = item.content;
+    }
   });
 
   return result;
