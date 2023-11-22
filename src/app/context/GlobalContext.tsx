@@ -55,6 +55,14 @@ export default function GlobalContext({
       backgroundColor: "#fff",
       borderRadius: 0,
     },
+    bigSquare: {
+      height: 60,
+      width: 120,
+      x: cursor.x - 60,
+      y: cursor.y - 30,
+      backgroundColor: "#fff",
+      borderRadius: 0,
+    },
   };
   useEffect(() => {
     const mouseMove = (e: MouseEvent) => {

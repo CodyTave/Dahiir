@@ -69,7 +69,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 .text-grgr {
-  background: linear-gradient(180deg, #4eb162 0%, #4e6bb1 100%);
+  background: linear-gradient(180deg, #4eb162 0%, #4e6bb1 50%, #b14e9d 100%);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

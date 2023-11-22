@@ -20,6 +20,7 @@ export async function GET(req: NextRequest) {
 export async function POST(req: Request) {
   const aboutData = await req.json();
   try {
+    await Auth(req);
     await dbConnect();
     const newData = new ContactFormModel(aboutData);
     const savedData = await newData.save();

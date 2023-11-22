@@ -1,5 +1,7 @@
 import About from "./components/About";
+import Contact from "./components/Contact";
 import HeroSection from "./components/HeroSection";
+import MoreInfo from "./components/MoreInfo";
 import ThingsIDo from "./components/ThingsIDo";
 export default function Home() {
   return (
@@ -7,6 +9,8 @@ export default function Home() {
       <HeroSection />
       <ThingsIDo />
       <About />
+      <MoreInfo />
+      <Contact />
     </div>
   );
 }
