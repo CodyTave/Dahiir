@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
         ))}
       </div>
-      <div className=" bg-[#1B1919] px-12 text-light-0/20 text-xs py-2 flex justify-end">
+      <div className=" bg-[#1B1919] px-5 text-light-0/20 text-xs py-2 flex justify-end">
         {"© Designed and Coded by Dahiir "}
       </div>
       <Zelij
