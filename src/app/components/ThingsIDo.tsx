@@ -37,10 +37,10 @@ export default function ThingsIDo() {
             onMouseEnter={() => setVariant("text")}
             onMouseLeave={() => setVariant("default")}
             key={id}
-            className="flex flex-col gap-5 xs:h-72 h-64 bg-dark-3 text-light-0/95 relative xs:w-80  px-6 py-8 rounded-md overflow-hidden"
+            className="flex flex-col gap-5 xs:h-72 xxs:h-64 h-56 bg-dark-3 text-light-0/95 relative xs:w-80  px-6 py-8 rounded-md overflow-hidden"
           >
-            <span className="text-3xl font-bold">{title}</span>
-            <span className="text-light-1">{desc}</span>
+            <span className="xs:text-3xl text-2xl font-bold">{title}</span>
+            <span className="text-light-1 xs:text-base text-sm">{desc}</span>
             <Zelij
               className={`absolute w-40 opacity-30 -right-10 -bottom-20 patt${
                 (index + 1) % 2

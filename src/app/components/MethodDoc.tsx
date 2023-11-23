@@ -20,17 +20,21 @@ export default function MethodDoc({
   return (
     <div className="flex flex-col gap-5 ">
       <div className="flex gap-5 items-center">
-        <h3 className={`text-3xl font-bold ${methodColor}`}>{method}</h3>
-        <h4 className="text-3xl font-bold">{title}</h4>
+        <h3 className={`xs:text-3xl text-2xl font-bold ${methodColor}`}>
+          {method}
+        </h3>
+        <h4 className="xs:text-3xl text-2xl font-bold">{title}</h4>
       </div>
-      <div className="flex justify-between gap-3 bg-light-2 p-3 px-5 rounded-md">
+      <div className="flex justify-between gap-3 bg-light-2 p-3 xs:px-5 px-1 rounded-md">
         <span className="font-medium font-sans xs:text-base text-xs">
           {Url}
         </span>
-        <CopyToCLip text={Url} />
+        <span className="xs:block hidden">
+          <CopyToCLip text={Url} />
+        </span>
       </div>
       {note && (
-        <span className="text-light-1 font-light xs:text-base text-sm">
+        <span className="text-light-1 font-light xs:text-base xxs:text-sm text-xs">
           {"NB: " + note}
         </span>
       )}

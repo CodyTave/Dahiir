@@ -35,9 +35,99 @@ export const socialLinks = [
     bg: "bg-pink-0",
   },
   {
+    id: "github",
+    title: "Github",
+    link: "https://github.com/CodyTave",
+    bg: "bg-dark-1",
+  },
+  {
     id: "insta",
     title: "Instagram",
     link: "https://www.instagram.com/oz_odeys",
     bg: "bg-insta",
+  },
+];
+
+export const footerLinks = [
+  {
+    id: "ressources",
+    title: "Ressources",
+    links: [
+      {
+        id: "home",
+        title: "Home Page",
+        url: "/",
+      },
+      {
+        id: "docs",
+        title: "Documentation",
+        url: "/documentation",
+      },
+      {
+        id: "about",
+        title: "About",
+        url: "#about",
+      },
+      {
+        id: "contact",
+        title: "Contact",
+        url: "/contact",
+      },
+    ],
+  },
+  {
+    id: "api",
+    title: "API",
+    links: [
+      {
+        id: "education",
+        title: "Education",
+        url: "/documentation#education",
+      },
+      {
+        id: "skills",
+        title: "Skills",
+        url: "/documentation#skills",
+      },
+      {
+        id: "experience",
+        title: "Experience",
+        url: "/documentation#experience",
+      },
+      {
+        id: "projects",
+        title: "Projects",
+        url: "/documentation#projects",
+      },
+    ],
+  },
+  {
+    id: "quick_access",
+    title: "Quick Access",
+    links: [
+      {
+        id: "randomProject",
+        title: "Random Project",
+        url: "/projects/random",
+      },
+      {
+        id: "npm",
+        title: "Npm Libraries",
+        url: "https://www.npmjs.com/~odeys",
+        external: true,
+      },
+      {
+        id: "github",
+        title: "Github",
+        url: "https://github.com/CodyTave",
+        external: true,
+      },
+      {
+        id: "linkedin",
+        title: "LinkedIn",
+        url: "https://www.linkedin.com/in/dahiir",
+        external: true,
+      },
+    ],
   },
 ];

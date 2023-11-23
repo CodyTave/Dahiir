@@ -9,7 +9,7 @@ export const JsonStyles = {
     color: "#A3A3A3",
     background: "#1E1E1E",
     fontFamily: "Poppins, sans-serif",
-    fontWeight: 600,
+    fontWeight: 500,
   },
   comment: {
     color: "#4E6BB1",

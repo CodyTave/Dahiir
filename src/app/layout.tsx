@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import GlobalContext from "./context/GlobalContext";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 export const metadata: Metadata = {
   title: "Dahiir ",
   description:
@@ -25,7 +26,8 @@ export default function RootLayout({
       <body className={poppins.className}>
         <GlobalContext>
           <Navbar />
-          <main className="px-12 py-5">{children}</main>
+          <main className="px-12 py-10 overflow-hidden">{children}</main>
+          <Footer />
         </GlobalContext>
       </body>
     </html>

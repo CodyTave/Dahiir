@@ -18,6 +18,7 @@ const config: Config = {
         pink: { 0: "#B14E9D" },
       },
       screens: {
+        xxs: "350px",
         xs: "460px",
         sm: "690px",
         md: "760px",

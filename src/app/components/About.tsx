@@ -1,16 +1,9 @@
 import { padding } from "../constants/styles";
+import { getAbout } from "../services/api";
 import Bio from "./Bio";
 import CodeSnippet from "./CodeSnippet";
 import MethodDoc from "./MethodDoc";
 import Painting from "./Painting";
-async function getAbout() {
-  const res = await fetch(process.env.API_BASE_URL + "/api/about");
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
 
 export default async function About() {
   const about = await getAbout();

@@ -10,8 +10,26 @@ interface ContactFormData extends Document {
 const ContactFormSchema = new Schema<ContactFormData>(
   {
     Name: { type: String, required: true },
-    PhoneNumber: { type: String, required: true },
-    Email: { type: String, required: true },
+    PhoneNumber: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (value: string) {
+          return /^\d+([- ]?\d+)*$/.test(value);
+        },
+        message: (props) => `${props.value} is not a valid phone number!`,
+      },
+    },
+    Email: {
+      type: String,
+      required: true,
+      validate: {
+        validator: function (value: string) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        },
+        message: (props) => `${props.value} is not a valid email address!`,
+      },
+    },
     Message: { type: String, required: true },
   },
   { versionKey: false }

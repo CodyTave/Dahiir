@@ -20,7 +20,7 @@ export default function HeroSection() {
 
   return (
     <div className="flex flex-col justify-center sm:mt-28 mt-16 ">
-      <div className="flex flex-col sm:flex-row justify-center text-5xl sm:text-6xl font-bold gap-x-3 ">
+      <div className="flex flex-col sm:flex-row justify-center text-4xl xxs:text-5xl sm:text-6xl font-bold gap-x-3 ">
         <span className="text-center">{Constant}</span>
         <div
           onMouseEnter={() => setVariant("text")}

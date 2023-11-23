@@ -14,7 +14,7 @@ export default async function Bio() {
     <div className="flex flex-col gap-5 max-w-lg mx-auto my-auto pb-8 lg:-order-first order-first">
       <MethodDoc endpoint="/about/bio" method="GET" title="Bio" />
       <div>
-        <div className="text-lg">{data.Bio}</div>
+        <div className="xs:text-lg text-base">{data.Bio}</div>
         <span className="text-dark-3 font-bold flex justify-end gap-1 ">
           <span className="text-dark-2">Oussama </span>Dahiir
         </span>
