@@ -6,10 +6,8 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     await dbConnect();
-    const aboutItems = await AboutModel.find(
-      { designation: "Bio" },
-      { _id: 0 }
-    );
+    const aboutItems: { designation: string; content: string | string[] }[] =
+      await AboutModel.find({ designation: "Bio" }, { _id: 0 });
     const about = aboutObject(aboutItems);
     return Response.json(about);
   } catch (error: any) {
