@@ -46,7 +46,7 @@ export default function JsonForm() {
     setResp("");
   }
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3 overflow-x-auto">
       {serverResp === "" ? (
         <div className=" bg-dark-3 rounded-md sm:p-10 p-5 min-w-[200px] overflow-auto">
           <span className="text-light-1 select-none">{"{"}</span>
@@ -69,7 +69,7 @@ export default function JsonForm() {
         </div>
       ) : (
         <CodeSnippet
-          code={JSON.stringify(serverResp, null, 8)}
+          code={JSON.stringify(serverResp, null, 5)}
           language="json"
         />
       )}

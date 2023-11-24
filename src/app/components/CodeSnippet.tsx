@@ -10,7 +10,7 @@ export default function CodeSnippet({
   return (
     <SyntaxHighlighter
       wrapLines
-      wrapLongLines
+      // wrapLongLines
       className="sm:px-10 px-1 py-10 rounded-md overflow-x-auto min-h-[200px]"
       language={language}
       style={JsonStyles}

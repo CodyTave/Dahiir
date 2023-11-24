@@ -39,11 +39,16 @@ export function getDuration(startDate: Date, endDate: Date | null): string {
   return "0 days"; // default if no duration
 }
 
-export function aboutObject(arr: { designation: string; content: string }[]) {
-  const result: { [key: string]: string } = {};
+export function aboutObject(
+  arr: { designation: string; content: string | string[] }[]
+) {
+  const result: { [key: string]: string | string[] } = {};
   arr.forEach((item) => {
     if (item.designation === "Age") {
-      const [day, month, year] = item.content.split("-");
+      const contentArray = Array.isArray(item.content)
+        ? item.content
+        : [item.content];
+      const [day, month, year] = contentArray[0].split("-");
       const birthDate = new Date(
         parseInt(year),
         parseInt(month),

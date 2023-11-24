@@ -26,7 +26,9 @@ export default function RootLayout({
       <body className={poppins.className}>
         <GlobalContext>
           <Navbar />
-          <main className="px-12 py-10 overflow-hidden">{children}</main>
+          <main className="xs:px-12 px-4 py-10 overflow-hidden">
+            {children}
+          </main>
           <Footer />
         </GlobalContext>
       </body>

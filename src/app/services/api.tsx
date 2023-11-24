@@ -3,7 +3,17 @@ const base_url = process.env.API_BASE_URL + "/api";
 const api_key = process.env.API_KEY;
 
 export async function getAbout() {
-  const res = await fetch(base_url + "/about");
+  const res = await fetch(base_url + "/about", { next: { revalidate: 0 } });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+export async function getBio() {
+  const res = await fetch(base_url + "/about/bio", {
+    next: { revalidate: 10000 },
+  });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
