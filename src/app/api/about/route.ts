@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
   try {
     await dbConnect();
     const aboutItems = await AboutModel.find({designation: { $ne: 'Bio' } },{_id:0});
-    const about = aboutObject(aboutItems)
+    const about = aboutObject(aboutItems  as { designation: string; content: string | string[] }[])
     return Response.json(about);
   } catch (error: any) {
     return Response.json({ Status: "Something went Wrong" }, { status: 500 });
