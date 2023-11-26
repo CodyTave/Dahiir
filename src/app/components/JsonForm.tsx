@@ -69,6 +69,7 @@ export default function JsonForm() {
         </div>
       ) : (
         <CodeSnippet
+          wrap
           code={JSON.stringify(serverResp, null, 5)}
           language="json"
         />

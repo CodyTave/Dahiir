@@ -87,6 +87,8 @@ export async function PUT(
     }
     return Response.json(result, { status: 200 });
   } catch (error: any) {
+    console.log("error here ", error);
+
     if (error.name === "CastError") {
       return Response.json({ error: error.message }, { status: 400 });
     }

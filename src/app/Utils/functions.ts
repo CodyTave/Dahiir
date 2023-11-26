@@ -13,10 +13,10 @@ export const InputWidth = (inputValue: string, long?: boolean): string => {
 
   const getTextWidth = (text: string): number => {
     context.font = "16px Arial";
-
     return (
       Math.round(context.measureText(text).width) +
-      (/[A-Z]/.test(text) ? -1 : 1) //cuz numbers and uppercase are a little bit bigger
+      (/[A-Z]/.test(text) ? -1 : 1) +
+      (/^[0-9]+$/.test(text) ? -1 : 0) //cuz numbers and uppercase are a little bit bigger
     );
   };
 

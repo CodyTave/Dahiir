@@ -20,6 +20,16 @@ export async function getBio() {
 
   return res.json();
 }
+export async function getProjects() {
+  const res = await fetch(base_url + "/projects", {
+    next: { revalidate: 10000 },
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
 
 export async function postContact(form: { [key: string]: string }) {
   const res = await fetch(base_url + "/contact", {

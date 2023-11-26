@@ -119,9 +119,9 @@ export async function handleFormData(formData: FormData, prevObj?: any) {
 export async function handleFile(file: File) {
   try {
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const path = `./Photos/${file.name}`;
+    const path = `./public/Photos/${file.name}`;
     await writeFile(path, fileBuffer);
-    return path;
+    return `/Photos/${file.name}`;
   } catch (error: any) {
     throw error;
   }

@@ -26,7 +26,11 @@ export default function Input({
   };
   return (
     <div onClick={focus} className="flex flex-wrap gap-2">
-      <label className="text-green-0 select-none">{`"${label}"` + ": "}</label>
+      <code>
+        <label className="text-green-0 select-none">
+          {`"${label}"` + ": "}
+        </label>
+      </code>
       <div>
         <span className="text-light-0 select-none  ">{`"`}</span>
         <input
