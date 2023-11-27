@@ -3,31 +3,11 @@ import Zelij from "@/assets/extra/Zelij";
 import React from "react";
 import { useGlobalContext } from "../context/store";
 import { padding } from "../constants/styles";
+import { Cards } from "../constants/constants";
 
 export default function ThingsIDo() {
   const { setVariant } = useGlobalContext();
 
-  const Cards: { id: string; title: string; desc: string; zelij: 1 | 2 | 3 }[] =
-    [
-      {
-        id: "design",
-        title: "I Design",
-        desc: "Pretty things and Unique enjoyable experiences",
-        zelij: 1,
-      },
-      {
-        id: "code",
-        title: "I Code",
-        desc: "Giving life to abstract and on paper ideas ",
-        zelij: 2,
-      },
-      {
-        id: "build",
-        title: "I Build",
-        desc: "Projects applying my creative perspectives on clients specific needs",
-        zelij: 3,
-      },
-    ];
   return (
     <div className={padding}>
       <h1 className="flex justify-center text-3xl font-bold">Things I Do ?</h1>

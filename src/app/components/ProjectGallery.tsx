@@ -3,45 +3,62 @@ import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
 import { project } from "../models/project";
 import { useState } from "react";
 import { padding } from "../constants/styles";
+import { AnimatePresence, motion } from "framer-motion";
+import Link from "next/link";
+import ProjectLinkButton from "./ProjectLinkButton";
 export default function ProjectGallery({ projects }: { projects: project[] }) {
   const [Hovered, setHovered] = useState<string | null>(null);
-  const Hover = (id: string) => {
+  const [Frame, setImage] = useState<string | null>(null);
+  const Hover = (id: string, frame?: string) => {
     setHovered(id);
+    setImage(frame || null);
   };
-  const UnHover = () => {
+  const unHover = () => {
     setHovered(null);
+    setImage(null);
   };
   return (
-    <div className={padding + "flex justify-between"}>
-      <div className="grid gap-5">
-        {projects.map((proj) => (
-          <div className="w-fit" key={proj._id}>
-            <div className="flex items-center">
-              <span
-                className={`${
-                  Hovered === proj._id ? "w-5 mr-2" : "w-0 mr-0"
-                } overflow-hidden transall`}
-              >
-                <ArrowUpRightIcon className={`text-dark-0 h-5 w-5 stroke-2 `} />
-              </span>
-              <h4
-                onMouseEnter={() => Hover(proj._id)}
-                onMouseLeave={UnHover}
-                className={`font-bold text-4xl w-fit ${
-                  Hovered === proj._id ? "text-dark-0" : "text-dark-2"
-                }`}
-              >
-                {proj.title}
-              </h4>
-            </div>
-            <span
-              className={`${
-                Hovered === proj._id ? "w-full" : "w-0"
-              } h-[3px] bg-dark-3 block transall`}
+    <div className={padding + "flex justify-between py-5"}>
+      <div className="grid h-96">
+        <div className="grid gap-5 shrink-0 h-fit">
+          {projects.map((proj) => (
+            <ProjectLinkButton
+              key={proj._id}
+              Hovered={Hovered === proj._id}
+              link=""
+              title={proj.title}
+              unHover={unHover}
+              Hover={() => Hover(proj._id, proj.frame)}
             />
-          </div>
-        ))}
+          ))}
+          <ProjectLinkButton
+            more
+            Hovered={Hovered === "more"}
+            link="/projects"
+            title="Mooooore"
+            unHover={unHover}
+            Hover={() => Hover("more")}
+          />
+        </div>
       </div>
+      <AnimatePresence mode="wait">
+        {Frame && (
+          <motion.div
+            initial={{ opacity: 0, scale: "120%" }}
+            animate={{ opacity: 1, scale: "100%" }}
+            exit={{ opacity: 0 }}
+            className="mlg:block hidden h-96 w-1/2 shadow-neo rounded-md relative"
+          >
+            <img
+              key={Frame}
+              className="w-full h-full object-cover rounded-md"
+              alt=""
+              src={Frame || ""}
+            />
+            <div className="w-full h-full bottom-grad absolute inset-0 opacity-80" />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -106,3 +106,10 @@ body {
 .patt0 {
   animation: rotate360 40s linear infinite reverse;
 }
+
+.shadow-neo {
+  box-shadow: -10px 10px 0px 0px #1e1e1e;
+}
+.bottom-grad {
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.15) 0%, #1e1e1e 100%);
+}
