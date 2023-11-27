@@ -1,9 +1,8 @@
-import Image from "next/image";
 import { getRandomProjects } from "../services/api";
 import ProjectGallery from "./ProjectGallery";
 
 export default async function Projects() {
-  const projects = await getRandomProjects(6);
+  const projects = await getRandomProjects(5);
   return (
     <div>
       <h1 className="flex justify-center text-3xl font-bold mb-16 ">

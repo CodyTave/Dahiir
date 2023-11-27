@@ -4,7 +4,6 @@ import { project } from "../models/project";
 import { useState } from "react";
 import { padding } from "../constants/styles";
 import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
 import ProjectLinkButton from "./ProjectLinkButton";
 export default function ProjectGallery({ projects }: { projects: project[] }) {
   const [Hovered, setHovered] = useState<string | null>(null);
@@ -25,7 +24,7 @@ export default function ProjectGallery({ projects }: { projects: project[] }) {
             <ProjectLinkButton
               key={proj._id}
               Hovered={Hovered === proj._id}
-              link=""
+              link="/projects"
               title={proj.title}
               unHover={unHover}
               Hover={() => Hover(proj._id, proj.frame)}
