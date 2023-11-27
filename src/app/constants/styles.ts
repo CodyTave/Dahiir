@@ -1,4 +1,4 @@
-export const padding = "xxl:px-28 xl:px-16 xs:px-8";
+export const padding = "xxl:px-28 xl:px-16 xs:px-8 ";
 
 export const JsonStyles = {
   'code[class*="language-"]': {

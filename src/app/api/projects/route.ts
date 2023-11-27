@@ -7,9 +7,9 @@ import { NextRequest } from "next/server";
 ///READ
 // prettier-ignore
 export async function GET(req: NextRequest) {
-  const Category = req.nextUrl.searchParams.get("Category");
-  const Year = req.nextUrl.searchParams.get("Year");
-  const Technology = req.nextUrl.searchParams.get("Technology");
+  const Category = req.nextUrl.searchParams.get("category");
+  const Year = req.nextUrl.searchParams.get("year");
+  const Technology = req.nextUrl.searchParams.get("technology");
   const query = {
     ...(Technology && { technologiesUsed: { $regex: new RegExp(Technology, 'i') } }),
     ...(Year && { year: Year }),
@@ -17,8 +17,8 @@ export async function GET(req: NextRequest) {
   };
   try {
     await dbConnect();
-    const education = await ProjectModel.find(query);
-    return Response.json(education);
+    const project = await ProjectModel.find(query);
+    return Response.json(project);
   } catch (error: any) {
     console.log(error)
     return Response.json({ Status: "Something went Wrong" }, { status: 500 });

@@ -29,3 +29,22 @@ export const InputWidth = (inputValue: string, long?: boolean): string => {
 
   return `${calculatedWidth + 5}px`;
 };
+
+export function calculateAge(birthDateString: string): string {
+  const [day, month, year] = birthDateString.split("-");
+  const birthDate = new Date(
+    parseInt(year),
+    parseInt(month) - 1,
+    parseInt(day)
+  ); // Subtract 1 from month since months are 0-indexed in JavaScript
+  const currentDate = new Date();
+  let age = currentDate.getFullYear() - birthDate.getFullYear();
+  if (
+    currentDate.getMonth() < birthDate.getMonth() ||
+    (currentDate.getMonth() === birthDate.getMonth() &&
+      currentDate.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+  return `${age} Years`;
+}

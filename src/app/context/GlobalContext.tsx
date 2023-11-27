@@ -63,6 +63,14 @@ export default function GlobalContext({
       backgroundColor: "#fff",
       borderRadius: 0,
     },
+    arrow: {
+      height: 2,
+      width: 30,
+      x: cursor.x - 15,
+      y: cursor.y - 1,
+      backgroundColor: "#fff",
+      borderRadius: 0,
+    },
   };
   useEffect(() => {
     const mouseMove = (e: MouseEvent) => {

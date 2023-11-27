@@ -1,11 +1,13 @@
 import Image from "next/image";
-import { getProjects } from "../services/api";
+import { getRandomProjects } from "../services/api";
+import ProjectGallery from "./ProjectGallery";
 
 export default async function Projects() {
-  const projects = await getProjects();
+  const projects = await getRandomProjects(6);
   return (
     <div>
-      <Image width={200} height={150} alt="" src="/Photos/DPlayer.png" />
+      <h1 className="flex justify-center text-3xl font-bold ">Projects</h1>
+      <ProjectGallery projects={projects} />
     </div>
   );
 }

@@ -65,14 +65,14 @@ export async function PUT(
 ) {
   const uuid = params.id;
   const project = await req.formData();
-  const Concat = req.nextUrl.searchParams.get("Concat");
+  const replace = req.nextUrl.searchParams.get("replace");
   try {
     await Auth(req);
     await dbConnect();
     const prev =
-      Concat?.toLowerCase() === "true"
-        ? await ProjectModel.findOne({ _id: uuid }, { _id: 0 })
-        : undefined;
+      replace?.toLowerCase() === "true"
+        ? undefined
+        : await ProjectModel.findOne({ _id: uuid }, { _id: 0 });
     const updatedProject = await handleFormData(project, prev);
     const result = await ProjectModel.findOneAndUpdate(
       { _id: uuid },
@@ -87,8 +87,6 @@ export async function PUT(
     }
     return Response.json(result, { status: 200 });
   } catch (error: any) {
-    console.log("error here ", error);
-
     if (error.name === "CastError") {
       return Response.json({ error: error.message }, { status: 400 });
     }

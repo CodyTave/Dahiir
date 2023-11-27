@@ -1,4 +1,5 @@
 import { writeFile } from "fs/promises";
+import { calculateAge } from "./functions";
 
 type Duration = {
   years: number;
@@ -43,27 +44,13 @@ export function aboutObject(
   arr: { designation: string; content: string | string[] }[]
 ) {
   const result: { [key: string]: string | string[] } = {};
+
   arr.forEach((item) => {
     if (item.designation === "Age") {
       const contentArray = Array.isArray(item.content)
         ? item.content
         : [item.content];
-      const [day, month, year] = contentArray[0].split("-");
-      const birthDate = new Date(
-        parseInt(year),
-        parseInt(month),
-        parseInt(day)
-      );
-      const currentDate = new Date();
-      let age = currentDate.getFullYear() - birthDate.getFullYear();
-      if (
-        currentDate.getMonth() < birthDate.getMonth() ||
-        (currentDate.getMonth() === birthDate.getMonth() &&
-          currentDate.getDate() < birthDate.getDate())
-      ) {
-        age--;
-      }
-      result["Age"] = `${age} Years`;
+      result["Age"] = calculateAge(contentArray[0]);
     } else {
       result[item.designation] = item.content;
     }
@@ -74,35 +61,30 @@ export function aboutObject(
 
 export function formDataObject(
   formData: FormData,
-  prevObj?: any
+  prevObj: Record<string, string | string[]> = {}
 ): Record<string, string | string[]> {
-  const formDataObject: Record<string, string | string[]> = prevObj || {};
+  const newObject: Record<string, string | string[]> = prevObj || {};
+
   formData.forEach((value, key) => {
-    if (!formDataObject[key]) {
-      if (!(value instanceof File)) {
-        formDataObject[key] = value.toString();
-      }
-    } else {
-      if (!Array.isArray(formDataObject[key])) {
-        formDataObject[key] = [
-          formDataObject[key].toString(),
-          value.toString(),
-        ];
+    const isntFile = !(value instanceof File);
+    if (isntFile) {
+      if (newObject[key]) {
+        newObject[key] = Array.isArray(newObject[key])
+          ? [...(newObject[key] as string[]), value.toString()]
+          : [newObject[key].toString(), value.toString()];
       } else {
-        if (!(prevObj[key] as string[]).includes(value.toString()))
-          if (!(value instanceof File)) {
-            (formDataObject[key] as string[]).push(value.toString());
-          }
+        newObject[key] = value.toString();
       }
     }
   });
 
-  return formDataObject;
+  return newObject;
 }
 
 export async function handleFormData(formData: FormData, prevObj?: any) {
   const returnObject = formDataObject(formData, prevObj);
   const images = formData.getAll("images");
+  const frame = formData.get("frame");
   if (images.length !== 0) {
     const links: string[] = (prevObj?.images as string[]) || [];
     await Promise.all(
@@ -113,6 +95,11 @@ export async function handleFormData(formData: FormData, prevObj?: any) {
     );
     returnObject.images = links;
   }
+  if (frame) {
+    const path = await handleFile(frame as File);
+    returnObject.frame = path;
+  }
+
   return returnObject;
 }
 
@@ -125,4 +112,17 @@ export async function handleFile(file: File) {
   } catch (error: any) {
     throw error;
   }
+}
+
+export function getRandomIndices(
+  numRandomIndices: number,
+  totalCount: number
+): number[] {
+  const randomIndices = new Set<number>();
+
+  while (randomIndices.size < numRandomIndices) {
+    randomIndices.add(Math.floor(Math.random() * totalCount));
+  }
+
+  return Array.from(randomIndices);
 }
