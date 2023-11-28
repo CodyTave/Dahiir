@@ -5,6 +5,8 @@ const api_key = process.env.API_KEY;
 export async function getAbout() {
   const res = await fetch(base_url + "/about", { next: { revalidate: 0 } });
   if (!res.ok) {
+    console.log(res);
+
     throw new Error("Failed to fetch data");
   }
 
@@ -15,6 +17,7 @@ export async function getBio() {
     next: { revalidate: 10000 },
   });
   if (!res.ok) {
+    console.log(res);
     throw new Error("Failed to fetch data");
   }
 
@@ -25,6 +28,7 @@ export async function getRandomProjects(count: number) {
     next: { revalidate: 1000 },
   });
   if (!res.ok) {
+    console.log(res);
     throw new Error("Failed to fetch data");
   }
   return res.json();
