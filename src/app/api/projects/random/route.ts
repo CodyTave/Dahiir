@@ -7,7 +7,7 @@ export async function GET(req: NextRequest) {
   try {
     await dbConnect();
     const countParam = req.nextUrl.searchParams.get("count");
-    const count = countParam ? parseInt(countParam) : 5;
+    const count = countParam ? parseInt(countParam, 10) : 5;
     const totalCount = await ProjectModel.countDocuments();
     if (totalCount < count) {
       const result = await ProjectModel.find({});
