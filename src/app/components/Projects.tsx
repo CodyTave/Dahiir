@@ -1,8 +1,8 @@
-import { getRandomProjects } from "../services/api";
+import { getProjects } from "../services/api";
 import ProjectGallery from "./ProjectGallery";
 
 export default async function Projects() {
-  const projects = await getRandomProjects(5);
+  const projects = await getProjects(5);
   return (
     <div>
       <h1 className="flex justify-center text-3xl font-bold mb-16 ">

@@ -7,7 +7,7 @@ export const navLinks = [
   {
     id: "docs",
     title: "Docs",
-    link: "/Documentation",
+    link: "/documentation",
   },
   {
     id: "about",
@@ -134,7 +134,7 @@ export const footerLinks = [
       {
         id: "randomProject",
         title: "Random Project",
-        url: "/projects/random",
+        url: "/work/random",
       },
       {
         id: "npm",

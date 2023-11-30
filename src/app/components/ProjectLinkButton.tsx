@@ -11,8 +11,8 @@ export default function ProjectLinkButton({
   frame,
   more,
 }: {
-  Hover: () => void;
-  unHover: () => void;
+  Hover?: () => void;
+  unHover?: () => void;
   Hovered: boolean;
   title: string;
   link: string;
@@ -39,7 +39,7 @@ export default function ProjectLinkButton({
           )}
         </span>
         <h4
-          className={`font-bold text-4xl w-fit ${
+          className={`font-bold xs:text-4xl text-3xl line-clamp-1 w-fit ${
             Hovered ? "text-dark-0" : "text-dark-2"
           }`}
         >

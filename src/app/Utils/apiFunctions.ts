@@ -114,15 +114,6 @@ export async function handleFile(file: File) {
   }
 }
 
-export function getRandomIndices(
-  numRandomIndices: number,
-  totalCount: number
-): number[] {
-  const randomIndices = new Set<number>();
-
-  while (randomIndices.size < numRandomIndices) {
-    randomIndices.add(Math.floor(Math.random() * totalCount));
-  }
-
-  return Array.from(randomIndices);
+export function slugHandler(str: string) {
+  return str.replace(/ /g, "-").toLowerCase();
 }

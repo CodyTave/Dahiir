@@ -17,27 +17,20 @@ export default function ProjectGallery({ projects }: { projects: project[] }) {
     setImage(null);
   };
   return (
-    <div className={padding + "flex justify-between py-5"}>
-      <div className="grid h-96">
+    <div className={padding + "flex mlg:justify-between py-5"}>
+      <div className="grid mlg:h-96">
         <div className="grid gap-5 shrink-0 h-fit">
           {projects.map((proj) => (
             <ProjectLinkButton
               key={proj._id}
               Hovered={Hovered === proj._id}
-              link="/projects"
+              link={"/work/" + proj.slug}
               title={proj.title}
               unHover={unHover}
               Hover={() => Hover(proj._id, proj.frame)}
             />
           ))}
-          <ProjectLinkButton
-            more
-            Hovered={Hovered === "more"}
-            link="/projects"
-            title="Mooooore"
-            unHover={unHover}
-            Hover={() => Hover("more")}
-          />
+          <ProjectLinkButton more Hovered link="/work" title="Mooooore" />
         </div>
       </div>
       <AnimatePresence mode="wait">
@@ -54,7 +47,7 @@ export default function ProjectGallery({ projects }: { projects: project[] }) {
               alt=""
               src={Frame || ""}
             />
-            <div className="w-full h-full bottom-grad absolute inset-0 opacity-80" />
+            <div className="w-full h-full bottom-grad absolute inset-0 opacity-80 rounded-md" />
           </motion.div>
         )}
       </AnimatePresence>

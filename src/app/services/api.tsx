@@ -19,10 +19,11 @@ export async function getBio() {
   }
   return res.json();
 }
-export async function getRandomProjects(count: number) {
-  const res = await fetch(base_url + `/projects`);
+export async function getProjects(limit?: number) {
+  const res = await fetch(
+    base_url + (limit ? `/projects?pageSize=${limit}` : "/projects")
+  );
   if (!res.ok) {
-    console.log(res);
     throw new Error("Failed to fetch data");
   }
   return res.json();

@@ -1,4 +1,3 @@
-import { getRandomIndices } from "@/app/Utils/apiFunctions";
 import { dbConnect } from "@/app/lib/mongoose";
 import ProjectModel from "@/app/models/project";
 import { NextRequest } from "next/server";
@@ -6,20 +5,10 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     await dbConnect();
-    const countParam = req.nextUrl.searchParams.get("count");
-    const count = countParam ? parseInt(countParam, 10) : 5;
+    const Technology = req.nextUrl.searchParams.get("technology");
     const totalCount = await ProjectModel.countDocuments();
-    if (totalCount < count) {
-      const result = await ProjectModel.find({});
-      return Response.json(result);
-    }
-    const randomIndices = getRandomIndices(count, totalCount);
-    const result = await ProjectModel.aggregate([
-      { $match: {} },
-      { $skip: randomIndices[0] },
-      { $sample: { size: count } },
-    ]);
-
+    const random = Math.floor(Math.random() * totalCount);
+    const result = await ProjectModel.findOne().skip(random);
     return Response.json(result);
   } catch (error: any) {
     if (error.name === "CastError") {

@@ -2,6 +2,7 @@ import mongoose, { Document, Schema, model } from "mongoose";
 
 export interface project extends Document {
   title: string;
+  slug: string;
   description: string;
   frame: string;
   categories: string[];
@@ -20,6 +21,7 @@ export interface project extends Document {
 const ProjectSchema = new Schema<project>(
   {
     title: { type: String, required: true },
+    slug: { type: String, required: true },
     description: { type: String, required: true },
     categories: { type: [String], required: true },
     frame: String,

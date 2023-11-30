@@ -1,7 +1,7 @@
 import ProjectModel from "@/app/models/project";
 import { dbConnect } from "@/app/lib/mongoose";
 import { Auth } from "@/app/lib/token";
-import { handleFormData } from "@/app/Utils/apiFunctions";
+import { handleFormData, slugHandler } from "@/app/Utils/apiFunctions";
 import { NextRequest } from "next/server";
 
 ///READ ONE
@@ -11,7 +11,7 @@ export async function GET(
 ) {
   try {
     await dbConnect();
-    const result = await ProjectModel.findOne({ _id: params.id });
+    const result = await ProjectModel.findOne({ slug: params.id });
     if (!result) {
       return Response.json({ error: "Item Not Found" }, { status: 404 });
     }
@@ -69,11 +69,15 @@ export async function PUT(
   try {
     await Auth(req);
     await dbConnect();
-    const prev =
-      replace?.toLowerCase() === "true"
-        ? undefined
-        : await ProjectModel.findOne({ _id: uuid }, { _id: 0 });
+    const doc = await ProjectModel.findOne({ _id: uuid }, { _id: 0 });
+    if (!doc) {
+      return Response.json({ error: "Item Not Found" }, { status: 404 });
+    }
+    const prev = replace?.toLowerCase() === "true" ? undefined : doc;
     const updatedProject = await handleFormData(project, prev);
+    updatedProject.slug = slugHandler(
+      (updatedProject.title as string) || doc?.title
+    );
     const result = await ProjectModel.findOneAndUpdate(
       { _id: uuid },
       updatedProject,
@@ -82,9 +86,6 @@ export async function PUT(
         runValidators: true,
       }
     );
-    if (!result) {
-      return Response.json({ error: "Item Not Found" }, { status: 404 });
-    }
     return Response.json(result, { status: 200 });
   } catch (error: any) {
     if (error.name === "CastError") {
