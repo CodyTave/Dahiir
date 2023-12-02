@@ -16,6 +16,7 @@ export interface project extends Document {
   projectStatus?: string;
   collaboration?: string;
   figma?: string;
+  primaryColor?: string;
 }
 
 const ProjectSchema = new Schema<project>(
@@ -35,6 +36,7 @@ const ProjectSchema = new Schema<project>(
     projectStatus: String,
     collaboration: String,
     figma: String,
+    primaryColor: String,
   },
   { versionKey: false }
 );

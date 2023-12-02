@@ -115,5 +115,5 @@ body {
   box-shadow: -10px 10px 0px 0px #1e1e1e;
 }
 .bottom-grad {
-  background: linear-gradient(180deg, rgba(30, 30, 30, 0.15) 0%, #1e1e1e 100%);
+  background: linear-gradient(180deg, rgba(30, 30, 30, 0.15) 20%, #1e1e1e 100%);
 }

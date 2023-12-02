@@ -40,6 +40,13 @@ export default function GlobalContext({
       y: cursor.y - 50,
       mixBlendMode: "multiply",
     },
+    card: {
+      height: 80,
+      width: 80,
+      x: cursor.x - 40,
+      y: cursor.y - 40,
+      mixBlendMode: "multiply",
+    },
     small: {
       height: 10,
       width: 10,

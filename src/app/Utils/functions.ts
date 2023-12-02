@@ -48,3 +48,11 @@ export function calculateAge(birthDateString: string): string {
   }
   return `${age} Years`;
 }
+export function joinStrings(strings: string[]): string {
+  if (strings.length <= 3) {
+    return strings.join(", ");
+  } else {
+    const firstThree = strings.slice(0, 3).join(", ");
+    return `${firstThree}...`;
+  }
+}

@@ -6,9 +6,14 @@ export default async function page() {
   const projects = await getProjects();
   return (
     <div>
-      <h1 className="flex justify-center text-5xl font-bold mb-16 text-grbl ">
-        Work
-      </h1>
+      <div className="my-16 flex flex-col justify-center text-dark-3 text-center gap-3 ">
+        <h1 className="text-5xl font-bold gap-2 ">
+          <span className="text-grbl">Checkout</span> {" some of my work"}
+        </h1>
+        <p className="font-medium">
+          {"Some of the really cool projects i have made or took part of"}
+        </p>
+      </div>
       <ProjectGrid projects={projects} />
     </div>
   );
