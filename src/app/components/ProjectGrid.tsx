@@ -31,14 +31,16 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
             transition={{ type: "spring", delay: 0.1 * index }}
             className=" rounded-sm relative transall overflow-hidden "
           >
-            <Link href={"/work/" + proj.slug}>
-              <img
-                className="w-full h-full object-cover rounded-sm"
-                alt=""
-                src={proj.frame || ""}
-              />
-            </Link>
-            <div className="w-full h-full bottom-grad absolute inset-0 opacity-80 rounded-sm" />
+            <img
+              className={`w-full h-full object-cover rounded-sm `}
+              alt=""
+              src={proj.frame || ""}
+            />
+            <div
+              className={`w-full h-full  ${
+                Hovered === proj._id ? "dark-overlay" : "bottom-grad"
+              } absolute inset-0 opacity-80 rounded-sm transall`}
+            />
             <Link href={"/work/" + proj.slug}>
               <AnimatePresence mode="wait">
                 {Hovered === proj._id && (
@@ -46,13 +48,16 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                     initial={{ y: "100%" }}
                     animate={{ y: "15%" }}
                     exit={{ y: "100%" }}
-                    style={{
-                      backgroundColor: `${proj.primaryColor || "#1E1E1E"}`,
+                    transition={{
+                      duration: 0.5,
+                      type: "spring",
+                      damping: 15,
+                      stiffness: 250,
                     }}
-                    className="absolute w-full h-[80%]  left-0 bottom-0 flex flex-col p-5 text-light-0 gap-2"
+                    className="absolute w-full h-full  left-0 bottom-0 flex flex-col p-5 text-light-0 gap-2 bg-dark-3"
                   >
                     <div className="font-bold text-xl">
-                      <span>{proj.title}</span>
+                      <span className="hover:underline">{proj.title}</span>
                       <span className="text-xs text-light-0/40 ml-2 font-medium">
                         {joinStrings(proj.categories)}
                       </span>
@@ -64,9 +69,16 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                         </span>
                       </div>
                     )}
-                    <p className="font-light line-clamp-3 text-sm text-light-0/80">
+                    <p className="font-light line-clamp-2 text-sm text-light-0/80">
                       {proj.description}
                     </p>
+                    {proj.images?.length !== 0 && (
+                      <div className="flex gap-3">
+                        {proj.images?.slice(0, 3).map((img) => (
+                          <img id={img} className="w-36 rounded-sm" src={img} />
+                        ))}
+                      </div>
+                    )}
                   </motion.div>
                 )}
               </AnimatePresence>

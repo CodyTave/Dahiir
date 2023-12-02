@@ -117,3 +117,6 @@ body {
 .bottom-grad {
   background: linear-gradient(180deg, rgba(30, 30, 30, 0.15) 20%, #1e1e1e 100%);
 }
+.dark-overlay {
+  background: linear-gradient(180deg, rgba(30, 30, 30, 2) 90%, #1e1e1e 100%);
+}

@@ -3,7 +3,7 @@ const base_url = process.env.API_BASE_URL + "/api";
 const api_key = process.env.API_KEY;
 
 export async function getAbout() {
-  const res = await fetch(base_url + "/about", { next: { revalidate: 1000 } });
+  const res = await fetch(base_url + "/about", { cache: "no-cache" });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -11,9 +11,7 @@ export async function getAbout() {
   return res.json();
 }
 export async function getBio() {
-  const res = await fetch(base_url + "/about/bio", {
-    next: { revalidate: 10000 },
-  });
+  const res = await fetch(base_url + "/about/bio", { cache: "no-cache" });
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
@@ -21,7 +19,8 @@ export async function getBio() {
 }
 export async function getProjects(limit?: number) {
   const res = await fetch(
-    base_url + (limit ? `/projects?pageSize=${limit}` : "/projects")
+    base_url + (limit ? `/projects?pageSize=${limit}` : "/projects"),
+    { cache: "no-cache" }
   );
   if (!res.ok) {
     throw new Error("Failed to fetch data");
