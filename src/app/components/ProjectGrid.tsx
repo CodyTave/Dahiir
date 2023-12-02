@@ -75,7 +75,11 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                     {proj.images?.length !== 0 && (
                       <div className="flex gap-3">
                         {proj.images?.slice(0, 3).map((img) => (
-                          <img id={img} className="w-36 rounded-sm" src={img} />
+                          <img
+                            key={img}
+                            className="w-36 rounded-sm"
+                            src={img}
+                          />
                         ))}
                       </div>
                     )}
