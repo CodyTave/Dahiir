@@ -1,4 +1,7 @@
 "use server";
+
+import { notFound } from "next/navigation";
+
 const base_url = process.env.API_BASE_URL + "/api";
 const api_key = process.env.API_KEY;
 
@@ -24,6 +27,15 @@ export async function getProjects(limit?: number) {
   );
   if (!res.ok) {
     throw new Error("Failed to fetch data");
+  }
+  return res.json();
+}
+export async function getProject(slug: string) {
+  const res = await fetch(base_url + `/projects/${slug}`, {
+    cache: "no-cache",
+  });
+  if (res.status === 404) {
+    return notFound();
   }
   return res.json();
 }

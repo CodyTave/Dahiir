@@ -120,3 +120,11 @@ body {
 .dark-overlay {
   background: linear-gradient(180deg, rgba(30, 30, 30, 2) 90%, #1e1e1e 100%);
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+  width: 0.2em;
+}
+
+.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}

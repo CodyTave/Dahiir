@@ -5,11 +5,15 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useGlobalContext } from "../context/store";
 import { joinStrings } from "../Utils/functions";
 import Link from "next/link";
+import Zelij from "@/assets/extra/Zelij";
 
 export default function ProjectGrid({ projects }: { projects: project[] }) {
   const { setVariant } = useGlobalContext();
   const [Hovered, setHovered] = useState<null | string>(null);
+  const [randomZelij, setZelij] = useState<1 | 2 | 3>(2);
   const Hover = (id: string) => {
+    const zelija = (Math.floor(Math.random() * 3) + 1) as 1 | 2 | 3;
+    setZelij(zelija);
     setVariant("card");
     setHovered(id);
   };
@@ -29,7 +33,7 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ type: "spring", delay: 0.1 * index }}
-            className=" rounded-sm relative transall overflow-hidden "
+            className=" rounded-sm relative transall overflow-hidden h-[300px] "
           >
             <img
               className={`w-full h-full object-cover rounded-sm `}
@@ -54,9 +58,9 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                       damping: 15,
                       stiffness: 250,
                     }}
-                    className="absolute w-full h-full  left-0 bottom-0 flex flex-col p-5 text-light-0 gap-2 bg-dark-3"
+                    className="absolute w-full h-[118%] left-0 bottom-0 flex flex-col p-5 text-light-0 gap-2 bg-dark-3"
                   >
-                    <div className="font-bold text-xl">
+                    <div className="font-bold text-2xl">
                       <span className="hover:underline">{proj.title}</span>
                       <span className="text-xs text-light-0/40 ml-2 font-medium">
                         {joinStrings(proj.categories)}
@@ -73,7 +77,7 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                       {proj.description}
                     </p>
                     {proj.images?.length !== 0 && (
-                      <div className="flex gap-3">
+                      <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
                         {proj.images?.slice(0, 3).map((img) => (
                           <img
                             key={img}
@@ -83,6 +87,12 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                         ))}
                       </div>
                     )}
+                    <Zelij
+                      className={`absolute w-40 opacity-30 -right-10 -bottom-10 patt${
+                        (index + 1) % 2
+                      }`}
+                      nb={randomZelij}
+                    />
                   </motion.div>
                 )}
               </AnimatePresence>

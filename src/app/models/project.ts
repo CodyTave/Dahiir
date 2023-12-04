@@ -9,7 +9,7 @@ export interface project extends Document {
   role?: string;
   technologiesUsed?: string[];
   clientOrCompany?: string;
-  year?: Date;
+  year?: string;
   url?: string;
   images?: string[];
   challenges?: string;
@@ -29,7 +29,7 @@ const ProjectSchema = new Schema<project>(
     role: String,
     technologiesUsed: [String],
     clientOrCompany: String,
-    year: Date,
+    year: String,
     url: String,
     images: [String],
     challenges: String,
