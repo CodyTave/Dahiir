@@ -6,7 +6,7 @@ export default async function page({ params }: { params: { slug: string } }) {
   const project = await getProject(params.slug);
   return (
     <div className="mb-20">
-      <div className="grid grid-cols-2">
+      <div className="grid md:grid-cols-2">
         <div className="grid gap-8 h-fit">
           <h1 className="text-5xl font-bold">{project.title}</h1>
           <p>{project.description}</p>
