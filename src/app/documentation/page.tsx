@@ -1,5 +1,10 @@
 import React from "react";
+import CodeBlock from "../components/CodeBlock";
 
 export default function page() {
-  return <div>documentation</div>;
+  return (
+    <div>
+      <CodeBlock wrap />
+    </div>
+  );
 }

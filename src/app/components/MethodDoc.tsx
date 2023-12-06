@@ -4,10 +4,12 @@ export default function MethodDoc({
   title,
   endpoint,
   note,
+  path,
 }: {
   method: "GET" | "POST";
   title: string;
   endpoint: string;
+  path?: string;
   note?: string;
 }) {
   const Url = process.env.API_BASE_URL + "/api" + endpoint;
@@ -27,10 +29,13 @@ export default function MethodDoc({
       </div>
       <div className="flex justify-between gap-3 bg-light-2 p-3 xs:px-5 px-1 rounded-md">
         <span className="font-medium font-sans xs:text-base text-xs">
-          {Url}
+          {Url + (path ? "/" : "")}
+          <span className="font-medium font-sans xs:text-base text-xs text-green-0">
+            {path}
+          </span>
         </span>
-        <span className="xs:block hidden">
-          <CopyToCLip text={Url} />
+        <span className="">
+          <CopyToCLip text={Url + (path ? "/" + path : "")} />
         </span>
       </div>
       {note && (

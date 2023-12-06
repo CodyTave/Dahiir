@@ -68,6 +68,9 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.bg-grbl {
+  background: linear-gradient(180deg, #4e6bb1 10%, rgba(78, 177, 98, 1) 100%);
+}
 .text-grgr {
   background: linear-gradient(180deg, #4eb162 0%, #4e6bb1 50%, #b14e9d 100%);
   background-clip: text;

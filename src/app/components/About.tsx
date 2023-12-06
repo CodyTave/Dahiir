@@ -1,7 +1,7 @@
 import { padding } from "../constants/styles";
 import { getAbout } from "../services/api";
 import Bio from "./Bio";
-import CodeSnippet from "./CodeSnippet";
+import JsonBlock from "./JsonBlock";
 import MethodDoc from "./MethodDoc";
 import Painting from "./Painting";
 
@@ -23,7 +23,7 @@ export default async function About() {
           endpoint="/about"
           note="this data is updated in real time"
         />
-        <CodeSnippet language="json" code={JSON.stringify(about, null, 5)} />
+        <JsonBlock code={JSON.stringify(about, null, 5)} />
       </div>
     </div>
   );

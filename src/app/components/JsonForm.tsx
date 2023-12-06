@@ -5,7 +5,7 @@ import Input from "./Input";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { postContact } from "../services/api";
-import CodeSnippet from "./CodeSnippet";
+import JsonBlock from "./JsonBlock";
 export default function JsonForm() {
   const [form, setForm] = useState({
     Name: "",
@@ -68,11 +68,7 @@ export default function JsonForm() {
           <span className="text-light-1 select-none">{"}"}</span>
         </div>
       ) : (
-        <CodeSnippet
-          wrap
-          code={JSON.stringify(serverResp, null, 5)}
-          language="json"
-        />
+        <JsonBlock wrap code={JSON.stringify(serverResp, null, 5)} />
       )}
       {serverResp === "" ? (
         <Button

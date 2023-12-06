@@ -7,8 +7,8 @@ import { NextRequest } from "next/server";
 ///READ
 // prettier-ignore
 export async function GET(req: NextRequest) {
-  const Year = req.nextUrl.searchParams.get("Year");
-  const Current = req.nextUrl.searchParams.get("Current");
+  const Year = req.nextUrl.searchParams.get("year");
+  const Current = req.nextUrl.searchParams.get("current");
   const YearStart = new Date(`${Year}-01-01`);
   const YearEnd = new Date(`${Year}-12-31`);
   const query = Current

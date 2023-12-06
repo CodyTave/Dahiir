@@ -10,9 +10,12 @@ export default function DetailsComponent({
   return (
     <div>
       <h1 className="font-bold">{title} :</h1>
-      <div className="flex flex-col gap-1 mt-3">
+      <div className="flex flex-col gap-2 mt-3">
         {elements.map((el) => (
-          <div key={el} className="text-sm font-medium">
+          <div
+            key={el}
+            className="text-sm font-medium bg-dark-3 w-fit rounded-full p-1 px-3 text-light-0"
+          >
             {el}
           </div>
         ))}
