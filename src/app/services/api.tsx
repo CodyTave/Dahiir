@@ -39,6 +39,12 @@ export async function getProject(slug: string) {
   }
   return res.json();
 }
+export async function getRandomProject() {
+  const res = await fetch(base_url + `/projects/random`, {
+    cache: "no-cache",
+  });
+  return res.json();
+}
 
 export async function postContact(form: { [key: string]: string }) {
   const res = await fetch(base_url + "/contact", {
@@ -50,4 +56,9 @@ export async function postContact(form: { [key: string]: string }) {
     },
   });
   return res.json();
+}
+
+export async function getBaseUrl() {
+  const baseUrl = process.env.API_BASE_URL;
+  return baseUrl;
 }

@@ -23,7 +23,7 @@ export default async function About() {
           endpoint="/about"
           note="this data is updated in real time"
         />
-        <JsonBlock code={JSON.stringify(about, null, 5)} />
+        <JsonBlock expandable code={JSON.stringify(about, null, 5)} />
       </div>
     </div>
   );

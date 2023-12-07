@@ -1,23 +1,13 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { JsonStyles } from "@/app/constants/styles";
+import { NodeJs_axios } from "../constants/codeLanguages";
 export default function CodeBlock({
   code,
   wrap,
 }: {
-  code?: string;
+  code: string;
   wrap?: boolean;
 }) {
-  const codeDemo = `
-  var axios = require('axios');
-  var config = { method: 'get',maxBodyLength: Infinity,
-    url: 'https://www.dahiir.com/api/experience',
-    axios(config)
-    .then(function (response) {
-        console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error){
-            console.log(error);
-         });`;
   return (
     <SyntaxHighlighter
       wrapLines
@@ -28,7 +18,7 @@ export default function CodeBlock({
       style={JsonStyles}
       language="javascript"
     >
-      {codeDemo}
+      {code}
     </SyntaxHighlighter>
   );
 }

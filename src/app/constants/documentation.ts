@@ -1,6 +1,9 @@
-const EducationDocs = {
+import { Documentation } from "./types";
+
+export const EducationDocs: Documentation = {
   title: "Experience",
   endpoint: "experience",
+  method: "GET",
   description: `The /experience endpoint is a real-time window into my evolving professional journey.
    It provides a dynamic overview of roles, and achievements, constantly updating to reflect the latest additions to my experience. 
     ensuring you stay informed about my current professional narrative.
@@ -21,4 +24,5 @@ const EducationDocs = {
       description: "This param returns my current position ",
     },
   ],
+  Note: `You can’t provide Current and Year Params at the same time`,
 };
