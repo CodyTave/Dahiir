@@ -4,7 +4,7 @@ export interface Documentation {
   description: string;
   method: "GET" | "POST";
   Params: Param[];
-  Note: string;
+  Note?: string;
 }
 export interface Param {
   id: number;

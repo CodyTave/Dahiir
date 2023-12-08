@@ -8,7 +8,7 @@ export default function ParamDetail({ param }: { param: Param }) {
       <div className="flex items-center gap-5">
         <h3 className="text-lg font-semibold">{param.title}</h3>
         <span className="text-green-0">
-          {param.enums && joinStrings(param.enums)}
+          {param.enums && joinStrings(param.enums, 5)}
         </span>
       </div>
       <p>{param.description}</p>

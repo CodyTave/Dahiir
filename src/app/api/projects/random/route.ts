@@ -5,7 +5,6 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     await dbConnect();
-    const Technology = req.nextUrl.searchParams.get("technology");
     const totalCount = await ProjectModel.countDocuments();
     const random = Math.floor(Math.random() * totalCount);
     const result = await ProjectModel.findOne().skip(random);

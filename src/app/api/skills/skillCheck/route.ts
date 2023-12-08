@@ -2,14 +2,13 @@ import { dbConnect } from "@/app/lib/mongoose";
 import SkillModel from "@/app/models/skills";
 import { NextRequest } from "next/server";
 
-export async function GET(
-  req: NextRequest,
-  { params }: { params: { kw: string } }
-) {
+export async function GET(req: NextRequest) {
   try {
     await dbConnect();
+    const q = req.nextUrl.searchParams.get("q");
+
     const skill = await SkillModel.find({
-      name: { $regex: new RegExp(params.kw, "i") },
+      name: { $regex: new RegExp(q || "", "i") },
     });
     if (skill.length === 0) {
       return Response.json(

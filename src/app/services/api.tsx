@@ -62,3 +62,8 @@ export async function getBaseUrl() {
   const baseUrl = process.env.API_BASE_URL;
   return baseUrl;
 }
+
+export async function getAnything(url: string) {
+  const res = await fetch(base_url + url);
+  return res.json();
+}

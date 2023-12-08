@@ -1,11 +1,13 @@
 import React from "react";
 import EndpointDoc from "../components/EndpointDoc";
-import { EducationDocs } from "../constants/documentation";
+import { Docs } from "../constants/documentation";
 
 export default function page() {
   return (
-    <div>
-      <EndpointDoc Doc={EducationDocs} />
+    <div className="grid gap-10">
+      {Docs.map((doc) => (
+        <EndpointDoc key={doc.endpoint} Doc={doc} />
+      ))}
     </div>
   );
 }

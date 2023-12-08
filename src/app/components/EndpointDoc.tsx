@@ -2,15 +2,15 @@ import React from "react";
 import { Documentation } from "../constants/types";
 import MethodDoc from "./MethodDoc";
 import ParamDetail from "./ParamDetail";
-import EndpointConsole from "./EndpointConsole";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import EndpointTesting from "./EndpointTesting";
 
 export default function EndpointDoc({ Doc }: { Doc: Documentation }) {
   const { title, endpoint, description, Params, Note, method } = Doc;
 
   return (
-    <div className="grid sm:grid-cols-2 mb-40">
-      <div className="grid gap-10">
+    <div className="grid sm:grid-cols-2 gap-48">
+      <div className="grid gap-10 h-fit">
         <MethodDoc title={title} method={method} endpoint={`/${endpoint}`} />
         <div className="grid gap-3">
           <h2 className="text-2xl font-bold">Description :</h2>
@@ -28,9 +28,8 @@ export default function EndpointDoc({ Doc }: { Doc: Documentation }) {
           <ExclamationTriangleIcon className=" w-7 h-7" />
           <span>{Note}</span>
         </div>
-        <EndpointConsole methodAvailable="GET" endpoint={endpoint} />
       </div>
-      <div></div>
+      <EndpointTesting endpoint={endpoint} method="get" />
     </div>
   );
 }

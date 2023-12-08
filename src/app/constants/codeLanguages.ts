@@ -1,6 +1,5 @@
 export const NodeJs_axios = (method: string, url: string) => {
-  return `
-    var axios = require('axios');
+  return `var axios = require('axios');
     var config = {
       method: '${method}',
     maxBodyLength: Infinity,
@@ -20,8 +19,7 @@ export const NodeJs_axios = (method: string, url: string) => {
 };
 
 export const NodeJsFetch = (method: string, url: string): string => {
-  return `
-      fetch('${url}', {
+  return `fetch('${url}', {
         method: '${method}',
         headers: {
           'Content-Type': 'application/json',
@@ -35,9 +33,7 @@ export const NodeJsFetch = (method: string, url: string): string => {
 };
 
 export const Python = (method: string, url: string): string => {
-  return `
-import requests
-
+  return `import requests
 url = '${url}'
 headers = {
     'Content-Type': 'application/json',
@@ -54,10 +50,7 @@ except ValueError:
 `;
 };
 export const JavaSpringBoot = (method: string, url: string): string => {
-  return `
-// Import necessary libraries
-
-import org.springframework.http.*;
+  return `import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 public class JavaSpringBoot {
@@ -85,16 +78,14 @@ public class JavaSpringBoot {
 };
 
 export const ShellCurl = (method: string, url: string): string => {
-  return `
-  ${method.toLowerCase()} "${url}" \\
+  return `${method.toLowerCase()} "${url}" \\
     -H "Content-Type: application/json" \\
     # Add any additional headers here
   `;
 };
 
 export const JavaScript_xhr = (method: string, url: string): string => {
-  return `
-const xhr = new XMLHttpRequest();
+  return `const xhr = new XMLHttpRequest();
 xhr.open('${method}', '${url}', true);
 xhr.setRequestHeader('Content-Type', 'application/json');
 // Add any additional headers here
@@ -108,3 +99,47 @@ xhr.onreadystatechange = function () {
 xhr.send();
 `;
 };
+
+export const codeSnippets: Array<{
+  id: string;
+  title: string;
+  code: (method: string, url: string) => string;
+  language: string;
+}> = [
+  {
+    id: "nodeaxios",
+    title: "NodeJs-axios",
+    code: NodeJs_axios,
+    language: "javascript",
+  },
+  {
+    id: "nodefetch",
+    title: "NodeJs-Fetch",
+    code: NodeJsFetch,
+    language: "javascript",
+  },
+  {
+    id: "jsxhr",
+    title: "JavaScript-XHR",
+    code: JavaScript_xhr,
+    language: "javascript",
+  },
+  {
+    id: "python",
+    title: "Python",
+    code: Python,
+    language: "python",
+  },
+  {
+    id: "javasb",
+    title: "Java Spring Boot",
+    code: JavaSpringBoot,
+    language: "java",
+  },
+  {
+    id: "shell",
+    title: "Shell Curl",
+    code: ShellCurl,
+    language: "bash",
+  },
+];

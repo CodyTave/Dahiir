@@ -1,20 +1,22 @@
 "use client";
-
-import { ArrowDownIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useEffect, useRef, useState } from "react";
-import { getBaseUrl } from "../services/api";
 
 export default function EndpointConsole({
   endpoint,
   methodAvailable,
+  paramQuery,
+  setParams,
+  send,
 }: {
   methodAvailable: string;
   endpoint: string;
+  paramQuery: string;
+  setParams: (q: string) => void;
+  send: () => void;
 }) {
   const [method, setMethod] = useState("GET");
   const [toggle, setToggle] = useState(false);
-  const [url, setUrl] = useState("");
-  const [paramsQuery, setQuery] = useState("?");
   const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -60,16 +62,8 @@ export default function EndpointConsole({
     setMethod(method.toUpperCase());
     setToggle(false);
   }
-  async function getUrl() {
-    await getBaseUrl().then((url) => {
-      setUrl(`${url}/${endpoint}` || "");
-    });
-  }
-  useEffect(() => {
-    getUrl();
-  }, []);
   return (
-    <div className="grid gap-5">
+    <div className="grid gap-5 h-fit">
       <h2 className="text-2xl font-bold">Request Console:</h2>
       <div className="flex gap-5">
         <div className="flex relative" ref={dropdownRef}>
@@ -101,14 +95,17 @@ export default function EndpointConsole({
           )}
         </div>
         <div className="flex bg-light-2 p-3 xs:px-5 px-1 rounded-md w-full font-sans font-medium">
-          <span className="xs:text-base text-xs">{url}</span>
+          <span className="xs:text-base text-xs">{endpoint}</span>
           <input
-            onChange={(e) => setQuery(e.target.value)}
-            value={paramsQuery}
+            onChange={(e) => setParams(e.target.value)}
+            value={paramQuery}
             className="bg-light-2 focus:outline-none text-green-0"
           />
         </div>
-        <button className="px-6 py-2 bg-green-0 text-light-0 font-semibold rounded-md hover:bg-green-0/90 transall">
+        <button
+          onClick={send}
+          className="px-6 py-2 bg-green-0 text-light-0 font-semibold rounded-md hover:bg-green-0/90 transall"
+        >
           Send
         </button>
       </div>
