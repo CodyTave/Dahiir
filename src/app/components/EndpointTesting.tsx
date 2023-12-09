@@ -28,7 +28,7 @@ export default function EndpointTesting({
 
   async function handleSubmit() {
     getAnything(`/${endpoint}` + paramQuery).then((resp) => {
-      setResponse(JSON.stringify(resp, null, 6));
+      setResponse(JSON.stringify(resp, null, 5));
       setLaoded(true);
     });
   }
@@ -36,6 +36,7 @@ export default function EndpointTesting({
     <>
       {Loaded && (
         <div className="grid gap-10">
+          <CodeBlock method="get" url={url + paramQuery} />
           <EndpointConsole
             send={handleSubmit}
             setParams={(e) => setParams(e)}
@@ -43,7 +44,6 @@ export default function EndpointTesting({
             methodAvailable={method.toUpperCase()}
             endpoint={url}
           />
-          <CodeBlock method="get" url={url + paramQuery} />
           <ResponseJson code={response} />
         </div>
       )}

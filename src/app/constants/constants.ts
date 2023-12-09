@@ -157,3 +157,17 @@ export const footerLinks = [
     ],
   },
 ];
+export const docsNav = [
+  { id: "education", endpoint: "education", title: "Education" },
+  { id: "experience", endpoint: "experience", title: "Experience" },
+  { id: "about", endpoint: "about", title: "About" },
+  { id: "bio", endpoint: "about/bio", title: "About - Bio" },
+  { id: "skills", endpoint: "skills", title: "Skills" },
+  {
+    id: "skillCheck",
+    endpoint: "skills/skillCheck",
+    title: "Skills - SkillCheck",
+  },
+  { id: "projects", endpoint: "projects", title: "Projects" },
+  { id: "random", endpoint: "projects/random", title: "Projects - Random" },
+];

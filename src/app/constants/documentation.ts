@@ -159,15 +159,7 @@ export const Docs: Documentation[] = [
     ],
     Note: `You can use any combination of Category, Year, and Technology Params. If PageSize is not provided, all results will be returned.`,
   },
-  {
-    title: "Project",
-    endpoint: "projects",
-    method: "GET",
-    description: `The /project-details endpoint allows you to retrieve detailed information about a specific project.
-      Provide the project ID as a parameter (id) to get detailed information about that project.`,
-    Params: [],
-    Note: `If the specified project ID is not found, an error message will be returned with a 404 status. If the provided ID is not valid, a 400 status will be returned.`,
-  },
+
   {
     title: "Random Project",
     endpoint: "projects/random",

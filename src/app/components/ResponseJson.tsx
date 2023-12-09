@@ -10,7 +10,7 @@ export default function JsonBlock({
 }) {
   return (
     <div
-      className={` min-h-[200px] max-h-[500px] overflow-y-auto relative rounded-md transall sm:px-10 bg-dark-3 ${
+      className={` min-h-[200px] max-h-[700px] overflow-y-auto relative rounded-md transall sm:px-10 bg-dark-3 ${
         wrap ? "px-3" : "px-1"
       } py-10 overflow-x-auto`}
     >

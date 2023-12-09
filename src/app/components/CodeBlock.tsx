@@ -30,7 +30,7 @@ export default function CodeBlock({
         onChange={(e) => handleChange(e.target.value)}
         className="text-light-0/50 font-semibold my-5 bg-dark-3 focus:outline-none"
       >
-        {codeSnippets.map(({ id, title, code, language }) => (
+        {codeSnippets.map(({ id, title }) => (
           <option value={id} key={id}>
             {title}
           </option>

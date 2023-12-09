@@ -65,7 +65,7 @@ export default function EndpointConsole({
   return (
     <div className="grid gap-5 h-fit">
       <h2 className="text-2xl font-bold">Request Console:</h2>
-      <div className="flex gap-5">
+      <div className="flex mlg:flex-row flex-col  gap-5">
         <div className="flex relative" ref={dropdownRef}>
           <button
             onClick={() => setToggle(!toggle)}
@@ -78,7 +78,7 @@ export default function EndpointConsole({
           </button>
           {toggle && (
             <div
-              className={`grid text-lg bg-light-2  rounded-md font-bold absolute top-full mt-2 w-full`}
+              className={`grid text-lg bg-light-2 z-30 rounded-md font-bold absolute top-full mt-2 mlg:w-full`}
             >
               {methods.map(({ id, color, title }) => (
                 <button
@@ -95,11 +95,13 @@ export default function EndpointConsole({
           )}
         </div>
         <div className="flex bg-light-2 p-3 xs:px-5 px-1 rounded-md w-full font-sans font-medium">
-          <span className="xs:text-base text-xs">{endpoint}</span>
+          <span className="xs:text-base text-xs shrink-0 line-clamp-1">
+            {endpoint}
+          </span>
           <input
             onChange={(e) => setParams(e.target.value)}
             value={paramQuery}
-            className="bg-light-2 focus:outline-none text-green-0"
+            className="bg-light-2 focus:outline-none text-green-0 w-full xs:text-base text-xs"
           />
         </div>
         <button

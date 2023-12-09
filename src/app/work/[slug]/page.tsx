@@ -4,12 +4,26 @@ import MethodDoc from "@/app/components/MethodDoc";
 import { getProject } from "@/app/services/api";
 import NextProject from "@/app/components/NextProject";
 import Link from "next/link";
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const project = await getProject(params.slug);
+
+  return {
+    title: project.title + " - Protfolio ",
+    icons: {
+      icon: "fav.svg",
+    },
+  };
+}
 
 export default async function page({ params }: { params: { slug: string } }) {
   const project = await getProject(params.slug);
   return (
     <div className="mb-20 sm:px-20 grid">
-      <div className="grid md:grid-cols-2">
+      <div className="grid">
         <div className="grid gap-8 h-fit">
           {/* <div className="w-full h-32 flex justify-center rounded-md relative  ">
             <img
@@ -45,12 +59,6 @@ export default async function page({ params }: { params: { slug: string } }) {
               <DetailsComponent title="Year" elements={[project.year]} />
             )}
           </div>
-        </div>
-        <div>
-          <img
-            src={project.frame}
-            className="w-full h-full object-cover rounded-md "
-          />
         </div>
       </div>
       <div className="grid gap-8 h-fit mt-8">

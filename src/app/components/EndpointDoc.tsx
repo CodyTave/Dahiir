@@ -9,7 +9,7 @@ export default function EndpointDoc({ Doc }: { Doc: Documentation }) {
   const { title, endpoint, description, Params, Note, method } = Doc;
 
   return (
-    <div className="grid sm:grid-cols-2 gap-48">
+    <div className="grid  gap-20">
       <div className="grid gap-10 h-fit">
         <MethodDoc title={title} method={method} endpoint={`/${endpoint}`} />
         <div className="grid gap-3">
