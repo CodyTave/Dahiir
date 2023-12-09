@@ -1,3 +1,4 @@
+"use client";
 import { Metadata } from "next";
 import NotFound from "@/app/components/NotFound";
 export const metadata: Metadata = {
