@@ -8,11 +8,11 @@ export default function Footer() {
   const { setVariant } = useGlobalContext();
   return (
     <footer className="relative overflow-hidden">
-      <div className="bg-dark-3 text-light-0 px-12 py-10 flex flex-wrap justify-start lg:gap-x-0 gap-x-20 gap-y-8">
+      <div className="bg-dark-3 text-light-0 px-12 py-10 flex flex-col md:flex-row flex-wrap justify-start lg:gap-x-0 gap-x-20 gap-y-8">
         <span
           onMouseEnter={() => setVariant("text")}
           onMouseLeave={() => setVariant("default")}
-          className="text-light-0 text-xl font-bold flex lg:justify-start justify-around gap-1 lg:w-1/4 "
+          className="text-light-0 text-xl font-bold flex  gap-1 lg:w-1/4 "
         >
           <span className="text-dark-2">Oussama </span>Dahiir
         </span>

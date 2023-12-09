@@ -8,12 +8,14 @@ export default function EndpointConsole({
   paramQuery,
   setParams,
   send,
+  noParams,
 }: {
   methodAvailable: string;
   endpoint: string;
   paramQuery: string;
   setParams: (q: string) => void;
   send: () => void;
+  noParams?: boolean;
 }) {
   const [method, setMethod] = useState("GET");
   const [toggle, setToggle] = useState(false);
@@ -98,11 +100,13 @@ export default function EndpointConsole({
           <span className="xs:text-base text-xs shrink-0 line-clamp-1">
             {endpoint}
           </span>
-          <input
-            onChange={(e) => setParams(e.target.value)}
-            value={paramQuery}
-            className="bg-light-2 focus:outline-none text-green-0 w-full xs:text-base text-xs"
-          />
+          {noParams || (
+            <input
+              onChange={(e) => setParams(e.target.value)}
+              value={paramQuery}
+              className="bg-light-2 focus:outline-none text-green-0 w-full xs:text-base text-xs"
+            />
+          )}
         </div>
         <button
           onClick={send}

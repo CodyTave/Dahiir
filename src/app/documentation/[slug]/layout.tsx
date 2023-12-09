@@ -9,9 +9,9 @@ export async function generateMetadata({
 }) {
   const title = docsNav.find((doc) => doc.id === params.slug)?.title;
   return {
-    title: title + " - Api Documentation ",
+    title: title || "Not Found" + " - Api Documentation ",
     icons: {
-      icon: "fav.svg",
+      icon: "/fav.svg",
     },
   };
 }

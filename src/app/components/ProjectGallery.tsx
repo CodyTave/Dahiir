@@ -36,12 +36,15 @@ export default function ProjectGallery({ projects }: { projects: project[] }) {
       <AnimatePresence mode="wait">
         {Frame && (
           <motion.div
-            initial={{ opacity: 0, scale: "120%" }}
+            initial={{ opacity: 0, scale: "140%" }}
             animate={{ opacity: 1, scale: "100%" }}
             exit={{ opacity: 0 }}
-            className="mlg:block hidden h-96 w-1/2 shadow-neo rounded-md relative"
+            className="mlg:block hidden h-96 w-1/2 rounded-sm relative overflow-hidden"
           >
-            <img
+            <motion.img
+              initial={{ scale: "120%" }}
+              animate={{ scale: "100%" }}
+              transition={{ duration: 1.8, delay: -0.5 }}
               key={Frame}
               className="w-full h-full object-cover rounded-md"
               alt=""

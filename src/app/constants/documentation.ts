@@ -39,6 +39,7 @@ export const Docs: Documentation[] = [
         id: 0,
         title: "Level",
         param: "Level",
+        enums: ["HighSchool", "College", "University"],
         description:
           "Filter education entries based on the specified academic level.",
       },
@@ -46,6 +47,7 @@ export const Docs: Documentation[] = [
         id: 1,
         title: "Certificates",
         param: "Certificates",
+        enums: ["True", "False"],
         description:
           "Filter education entries based on the presence of certificates.",
       },
@@ -53,6 +55,7 @@ export const Docs: Documentation[] = [
         id: 2,
         title: "Latest",
         param: "Latest",
+        enums: ["True", "False"],
         description: "If provided, returns the most recent education entry.",
       },
     ],

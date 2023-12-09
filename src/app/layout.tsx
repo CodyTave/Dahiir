@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "Oussmam Dahir (Dahiir) is a Creative Developer and UX/Ui Designer ",
   icons: {
-    icon: "fav.svg",
+    icon: "/fav.svg",
   },
 };
 const poppins = Poppins({

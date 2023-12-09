@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useGlobalContext } from "../context/store";
 import Button from "./Button";
 
@@ -35,8 +36,12 @@ export default function MoreInfo() {
         </span>
       </h4>
       <div className="flex flex-wrap justify-center mx-auto gap-5">
-        <Button>See Documentation</Button>
-        <Button light>Or Contact me</Button>
+        <Button>
+          <Link href="/documentation">See Documentation</Link>
+        </Button>
+        <Button light>
+          <Link href="/contact">Or Contact me</Link>
+        </Button>
       </div>
     </div>
   );

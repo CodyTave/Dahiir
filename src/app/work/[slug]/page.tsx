@@ -12,9 +12,9 @@ export async function generateMetadata({
   const project = await getProject(params.slug);
 
   return {
-    title: project.title + " - Protfolio ",
+    title: project.title + " - Work ",
     icons: {
-      icon: "fav.svg",
+      icon: "/fav.svg",
     },
   };
 }
@@ -42,7 +42,7 @@ export default async function page({ params }: { params: { slug: string } }) {
             </Link>
           )}
 
-          <div className="flex flex-wrap gap-x-28 gap-y-10">
+          <div className="flex md:flex-row flex-col gap-x-28 gap-y-10 flex-wrap">
             <DetailsComponent
               title="Technologies"
               elements={project.technologiesUsed}

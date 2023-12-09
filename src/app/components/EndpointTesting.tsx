@@ -2,19 +2,20 @@
 import React, { useEffect, useState } from "react";
 import EndpointConsole from "./EndpointConsole";
 import CodeBlock from "./CodeBlock";
-import { NodeJs_axios } from "../constants/codeLanguages";
 import ResponseJson from "@/app/components/ResponseJson";
 import { getAnything, getBaseUrl } from "../services/api";
 export default function EndpointTesting({
   method,
   endpoint,
+  noParams,
 }: {
   method: string;
   endpoint: string;
+  noParams?: boolean;
 }) {
   const [response, setResponse] = useState("");
   const [url, setUrl] = useState(`/${endpoint}`);
-  const [paramQuery, setParams] = useState("?");
+  const [paramQuery, setParams] = useState(noParams ? "" : "?");
   const [Loaded, setLaoded] = useState(false);
   async function getUrl() {
     await getBaseUrl().then((url) => {
@@ -38,6 +39,7 @@ export default function EndpointTesting({
         <div className="grid gap-10">
           <CodeBlock method="get" url={url + paramQuery} />
           <EndpointConsole
+            noParams={noParams}
             send={handleSubmit}
             setParams={(e) => setParams(e)}
             paramQuery={paramQuery}

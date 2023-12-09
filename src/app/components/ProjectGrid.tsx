@@ -55,8 +55,8 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                     transition={{
                       duration: 0.5,
                       type: "spring",
-                      damping: 15,
-                      stiffness: 250,
+                      damping: 20,
+                      stiffness: 200,
                     }}
                     className="absolute w-full h-[118%] left-0 bottom-0 flex flex-col p-5 text-light-0 gap-2 bg-dark-3"
                   >

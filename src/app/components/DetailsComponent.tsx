@@ -16,7 +16,7 @@ export default function DetailsComponent({
         {elements.map((el) => (
           <div
             key={el}
-            className="text-sm font-medium bg-dark-3 w-fit rounded-full p-1 px-3 text-light-0"
+            className="text-sm font-medium bg-dark-3 w-fit rounded-full p-1 px-3 text-light-0 shrink-0"
           >
             {el}
           </div>

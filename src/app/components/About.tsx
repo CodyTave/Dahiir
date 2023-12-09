@@ -5,12 +5,14 @@ import JsonBlock from "./JsonBlock";
 import MethodDoc from "./MethodDoc";
 import Painting from "./Painting";
 
-export default async function About() {
+export default async function About({ noPadding }: { noPadding?: boolean }) {
   const about = await getAbout();
   return (
-    <div className={padding + " grid gap-10"}>
+    <div className={(noPadding || padding) + " grid gap-10"}>
       <div>
-        <h1 className="flex justify-center text-3xl font-bold ">About Me</h1>
+        {noPadding || (
+          <h1 className="flex justify-center text-3xl font-bold ">About Me</h1>
+        )}
         <div className="grid lg:grid-cols-2 mt-16 gap-14  ">
           <Painting />
           <Bio />
