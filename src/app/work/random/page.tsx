@@ -1,7 +1,7 @@
 import useRandom from "@/app/hooks/useRandom";
 import { redirect } from "next/navigation";
 
-export default async function page() {
+export default async function Random() {
   const NextLink = await useRandom();
   redirect(NextLink);
   return (
