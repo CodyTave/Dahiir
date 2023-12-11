@@ -12,16 +12,16 @@ export default function NotFound() {
   return (
     <div className="relative h-[70vh] flex justify-center items-center">
       <Image
-        className={`fixed ${
+        className={`fixed sm:w-72 xs:w-52 w-28 ${
           Hovered ? "-right-5" : "-right-16"
-        }  top-1/3 transall-slow`}
+        }  xs:top-1/3 top-1/2 xs:translate-y-0 -translate-y-full xs:block hidden transall-slow`}
         alt=""
         src={rHand}
       />
       <Image
-        className={`fixed ${
+        className={`fixed sm:w-72 xs:w-52 w-28 ${
           Hovered ? "-left-5 " : "-left-16 "
-        }  top-1/3 transall-slow`}
+        }  xs:top-1/3 top-1/2 xs:translate-y-0 -translate-y-full xs:block hidden transall-slow`}
         alt=""
         src={lHand}
       />

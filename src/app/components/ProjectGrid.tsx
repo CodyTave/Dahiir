@@ -6,6 +6,7 @@ import { useGlobalContext } from "../context/store";
 import { joinStrings } from "../Utils/functions";
 import Link from "next/link";
 import Zelij from "@/assets/extra/Zelij";
+import Image from "next/image";
 
 export default function ProjectGrid({ projects }: { projects: project[] }) {
   const { setVariant } = useGlobalContext();
@@ -79,9 +80,12 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
                     {proj.images?.length !== 0 && (
                       <div className="flex gap-3 overflow-x-auto scrollbar-hidden">
                         {proj.images?.slice(0, 3).map((img) => (
-                          <img
+                          <Image
+                            height={90}
+                            width={200}
+                            alt=""
                             key={img}
-                            className="w-36 rounded-sm"
+                            className="w-36 rounded-sm object-cover"
                             src={img}
                           />
                         ))}

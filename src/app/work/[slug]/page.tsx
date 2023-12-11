@@ -32,9 +32,10 @@ export default async function page({ params }: { params: { slug: string } }) {
             />
           </div> */}
           <h1 className="text-5xl font-bold text-dark-3">{project.title}</h1>
-          <p>{project.description}</p>
+          <p className="max-w-4xl">{project.description}</p>
           {project.url && (
             <Link
+              target="_blank"
               href={project.url}
               className="flex w-fit bg-dark-3 text-light-0 px-10 py-2 rounded-md font-semibold hover:opacity-90 transall"
             >

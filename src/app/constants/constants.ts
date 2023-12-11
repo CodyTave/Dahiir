@@ -12,7 +12,7 @@ export const navLinks = [
   {
     id: "about",
     title: "About",
-    link: "/about",
+    link: "/contact",
   },
   {
     id: "work",
@@ -92,7 +92,7 @@ export const footerLinks = [
       {
         id: "about",
         title: "About",
-        url: "#about",
+        url: "/#about",
       },
       {
         id: "contact",
@@ -108,22 +108,22 @@ export const footerLinks = [
       {
         id: "education",
         title: "Education",
-        url: "/documentation#education",
+        url: "/documentation/education",
       },
       {
         id: "skills",
         title: "Skills",
-        url: "/documentation#skills",
+        url: "/documentation/skills",
       },
       {
         id: "experience",
         title: "Experience",
-        url: "/documentation#experience",
+        url: "/documentation/experience",
       },
       {
         id: "projects",
         title: "Projects",
-        url: "/documentation#projects",
+        url: "/documentation/projects",
       },
     ],
   },

@@ -8,7 +8,7 @@ import Painting from "./Painting";
 export default async function About({ noPadding }: { noPadding?: boolean }) {
   const about = await getAbout();
   return (
-    <div className={(noPadding || padding) + " grid gap-10"}>
+    <div id="about" className={(noPadding || padding) + " grid gap-10"}>
       <div>
         {noPadding || (
           <h1 className="flex justify-center text-3xl font-bold ">About Me</h1>

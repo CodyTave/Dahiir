@@ -8,6 +8,9 @@ body {
   color: #303030;
   min-width: 320px;
 }
+* {
+  scroll-behavior: smooth;
+}
 .inter {
   font-family: "inter", sans-serif;
 }

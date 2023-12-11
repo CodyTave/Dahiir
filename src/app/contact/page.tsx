@@ -4,7 +4,7 @@ import About from "../components/About";
 
 export default function page() {
   return (
-    <div>
+    <div className="mb-16">
       <Contact noPadding />
       <About noPadding />
     </div>

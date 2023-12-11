@@ -15,6 +15,7 @@ export default function AdvNav({ close }: { close: () => void }) {
     setBg(color);
     setHovered(id);
   }
+
   return (
     <motion.div
       initial={{ top: "-100%" }}
@@ -36,7 +37,7 @@ export default function AdvNav({ close }: { close: () => void }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.4 }}
             exit={{ opacity: 0 }}
-            className={`absolute w-full h-full ${bg} inset-0 -z-10 `}
+            className={`fixed sm:flex hidden w-full h-full ${bg} bottom-0 left-0 -z-10 `}
           />
         )}
       </AnimatePresence>
@@ -75,7 +76,9 @@ export default function AdvNav({ close }: { close: () => void }) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 5, opacity: 0 }}
             transition={{ delay: 0.4 * (index + 1.5) }}
-            className="flex items-center transall"
+            onMouseEnter={() => LinkHover(id, bg)}
+            onMouseLeave={() => LinkHover(null, null)}
+            className="flex items-center transall w-fit"
             key={id}
           >
             <span
@@ -86,8 +89,6 @@ export default function AdvNav({ close }: { close: () => void }) {
               <ArrowUpRightIcon className="w-3 h-3" />
             </span>
             <Link
-              onMouseEnter={() => LinkHover(id, bg)}
-              onMouseLeave={() => LinkHover(null, null)}
               className={`tracking-wide hover:underline `}
               target="_blank"
               href={link}

@@ -1,6 +1,6 @@
 import { getRandomProject } from "../services/api";
 
-export default async function useRandom(slug: string) {
+export default async function useRandom(slug?: string) {
   let randProject;
   do {
     randProject = await getRandomProject();
