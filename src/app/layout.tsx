@@ -4,6 +4,8 @@ import "./globals.css";
 import GlobalContext from "./context/GlobalContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 export const metadata: Metadata = {
   title: "Dahiir ",
   description:
@@ -31,6 +33,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </GlobalContext>
+        <SpeedInsights />
       </body>
     </html>
   );
