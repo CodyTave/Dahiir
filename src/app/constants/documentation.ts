@@ -168,7 +168,15 @@ export const Docs: Documentation[] = [
     endpoint: "projects/random",
     method: "GET",
     description: `The /random-project endpoint allows you to retrieve information about a randomly selected project.`,
-    Params: [],
-    Note: `This endpoint returns a random project from the database.`,
+    Params: [
+      {
+        id: 0,
+        title: "except",
+        param: "except",
+        description:
+          "You provide the slug of the project you want to exclude from your query",
+      },
+    ],
+    Note: `if the except param is not provided or not found it will ignore it.`,
   },
 ];

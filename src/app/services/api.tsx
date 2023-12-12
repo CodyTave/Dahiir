@@ -64,6 +64,6 @@ export async function getBaseUrl() {
 }
 
 export async function getAnything(url: string) {
-  const res = await fetch(base_url + url);
+  const res = await fetch(base_url + url, { next: { revalidate: 100 } });
   return res.json();
 }

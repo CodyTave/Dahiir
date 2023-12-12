@@ -25,7 +25,7 @@ export default function EndpointTesting({
   useEffect(() => {
     getUrl();
     handleSubmit();
-  }, [getUrl, handleSubmit]);
+  }, []);
 
   async function handleSubmit() {
     getAnything(`/${endpoint}` + paramQuery).then((resp) => {
