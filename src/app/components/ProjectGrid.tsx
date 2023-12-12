@@ -36,7 +36,10 @@ export default function ProjectGrid({ projects }: { projects: project[] }) {
             transition={{ type: "spring", delay: 0.1 * index }}
             className=" rounded-sm relative transall overflow-hidden h-[300px] "
           >
-            <img
+            <Image
+              sizes="100%"
+              width={0}
+              height={0}
               className={`w-full h-full object-cover rounded-sm `}
               alt=""
               src={proj.frame || ""}

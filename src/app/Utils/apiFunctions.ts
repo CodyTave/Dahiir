@@ -1,5 +1,13 @@
 import { writeFile } from "fs/promises";
 import { calculateAge } from "./functions";
+import { S3 } from "aws-sdk";
+const awsConfig = {
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET,
+};
+const Bucket_name = process.env.AWS_BUCKET_NAME || "";
+
+const s3 = new S3(awsConfig);
 
 type Duration = {
   years: number;
@@ -106,9 +114,18 @@ export async function handleFormData(formData: FormData, prevObj?: any) {
 export async function handleFile(file: File) {
   try {
     const fileBuffer = Buffer.from(await file.arrayBuffer());
-    const path = `./public/Photos/${file.name}`;
-    await writeFile(path, fileBuffer);
-    return `/Photos/${file.name}`;
+    const key = `Photos/${file.name}`;
+    const params = {
+      Bucket: Bucket_name,
+      Key: key,
+      Body: fileBuffer,
+      ContentType: file.type,
+    };
+
+    await s3.upload(params).promise();
+
+    const publicUrl = `https://${Bucket_name}.s3.amazonaws.com/${key}`;
+    return publicUrl;
   } catch (error: any) {
     throw error;
   }

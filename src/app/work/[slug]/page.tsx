@@ -4,6 +4,7 @@ import MethodDoc from "@/app/components/MethodDoc";
 import { getProject } from "@/app/services/api";
 import NextProject from "@/app/components/NextProject";
 import Link from "next/link";
+import Image from "next/image";
 export async function generateMetadata({
   params,
 }: {
@@ -25,12 +26,6 @@ export default async function page({ params }: { params: { slug: string } }) {
     <div className="mb-20 sm:px-20 grid">
       <div className="grid">
         <div className="grid gap-8 h-fit">
-          {/* <div className="w-full h-32 flex justify-center rounded-md relative  ">
-            <img
-              src={project.frame}
-              className="w-[80%] h-full object-cover rounded-b-[70px] "
-            />
-          </div> */}
           <h1 className="text-5xl font-bold text-dark-3">{project.title}</h1>
           <p className="max-w-4xl">{project.description}</p>
           {project.url && (
@@ -75,7 +70,14 @@ export default async function page({ params }: { params: { slug: string } }) {
         {project.images && (
           <div className=" w-full mx-auto grid gap-10">
             {project.images.map((img: string) => (
-              <img
+              <Image
+                blurDataURL="/Photos/naturo1/png"
+                placeholder="blur"
+                loading="lazy"
+                alt=""
+                sizes="100%"
+                width={0}
+                height={0}
                 className="w-full object-cover rounded-md"
                 src={img}
                 key={img}
