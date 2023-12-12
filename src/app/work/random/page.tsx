@@ -1,9 +1,12 @@
-import useRandom from "@/app/hooks/useRandom";
 import { getRandomProject } from "@/app/services/api";
 import { redirect } from "next/navigation";
 
-export default async function Random() {
-  const NextLink = await getRandomProject().then((res) => {
+export default async function Random({
+  searchParams,
+}: {
+  searchParams?: { except: string | undefined };
+}) {
+  await getRandomProject(searchParams?.except || "").then((res) => {
     redirect(`/work/${res.slug}`);
   });
   return (

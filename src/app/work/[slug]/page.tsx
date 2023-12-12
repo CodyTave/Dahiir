@@ -2,9 +2,9 @@ import JsonBlock from "@/app/components/JsonBlock";
 import DetailsComponent from "@/app/components/DetailsComponent";
 import MethodDoc from "@/app/components/MethodDoc";
 import { getProject } from "@/app/services/api";
-import NextProject from "@/app/components/NextProject";
 import Link from "next/link";
 import Image from "next/image";
+import ArrowLongRight from "@/assets/extra/ArrowLongRight";
 export async function generateMetadata({
   params,
 }: {
@@ -86,7 +86,13 @@ export default async function page({ params }: { params: { slug: string } }) {
           </div>
         )}
       </div>
-      <NextProject current={project.slug} />
+      <Link
+        href={`/work/random?except=${project.slug}`}
+        className="mt-20 ml-auto hover:-mr-5 transall"
+      >
+        <ArrowLongRight className="w-40 text-dark-3 " />
+        <span className="text-xs text-dark-3/80">Get a random project</span>
+      </Link>
     </div>
   );
 }

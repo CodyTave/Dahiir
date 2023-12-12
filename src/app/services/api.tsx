@@ -39,9 +39,9 @@ export async function getProject(slug: string) {
   }
   return res.json();
 }
-export async function getRandomProject() {
-  const res = await fetch(base_url + `/projects/random`, {
-    cache: "no-cache",
+export async function getRandomProject(except?: string) {
+  const res = await fetch(base_url + `/projects/random?except=${except}`, {
+    next: { revalidate: 200 },
   });
   return res.json();
 }

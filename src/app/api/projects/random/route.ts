@@ -5,9 +5,12 @@ import { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     await dbConnect();
-    const totalCount = await ProjectModel.countDocuments();
+    const except = req.nextUrl.searchParams.get("except");
+    const totalCountQuery = except ? { slug: { $ne: except } } : {};
+    const totalCount = await ProjectModel.countDocuments(totalCountQuery);
     const random = Math.floor(Math.random() * totalCount);
-    const result = await ProjectModel.findOne().skip(random);
+    const randomItemQuery = except ? { slug: { $ne: except } } : {};
+    const result = await ProjectModel.findOne(randomItemQuery).skip(random);
     return Response.json(result);
   } catch (error: any) {
     if (error.name === "CastError") {
