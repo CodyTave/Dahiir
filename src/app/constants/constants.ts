@@ -1,3 +1,6 @@
+import { build, code, design } from "@/assets";
+import { StaticImageData } from "next/image";
+
 export const navLinks = [
   {
     id: "home",
@@ -26,24 +29,28 @@ export const Cards: {
   title: string;
   desc: string;
   zelij: 1 | 2 | 3;
+  img: StaticImageData;
 }[] = [
   {
     id: "design",
     title: "I Design",
     desc: "Pretty things and Unique enjoyable experiences",
     zelij: 1,
+    img: design,
   },
   {
     id: "code",
     title: "I Code",
     desc: "Giving life to abstract and on paper ideas ",
     zelij: 2,
+    img: code,
   },
   {
     id: "build",
     title: "I Build",
     desc: "Projects applying my creative perspectives on clients specific needs",
     zelij: 3,
+    img: build,
   },
 ];
 

@@ -5,4 +5,18 @@ import rHand from "./rightHand.png";
 import lHand from "./leftHand.png";
 import painting from "./painting.png";
 import signature from "./signature.svg";
-export { zlg1, zlg2, zlg3, lHand, painting, rHand, signature };
+import design from "./design.png";
+import build from "./build.png";
+import code from "./code.jpg";
+export {
+  zlg1,
+  zlg2,
+  zlg3,
+  lHand,
+  painting,
+  rHand,
+  signature,
+  design,
+  code,
+  build,
+};

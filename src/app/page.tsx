@@ -1,9 +1,11 @@
-import About from "./components/About";
+import dynamic from "next/dynamic";
 import Contact from "./components/Contact";
 import HeroSection from "./components/HeroSection";
 import MoreInfo from "./components/MoreInfo";
-import Projects from "./components/Projects";
 import ThingsIDo from "./components/ThingsIDo";
+const About = dynamic(() => import("@/app/components/About"));
+const Projects = dynamic(() => import("@/app/components/Projects"));
+
 export default function Home() {
   return (
     <div className="grid gap-20">
