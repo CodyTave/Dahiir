@@ -85,7 +85,8 @@ export const Docs: Documentation[] = [
     endpoint: "skills",
     method: "GET",
     description: `The /skills endpoint allows you to retrieve information about my skills based on specified criteria.
-      You can filter skills by category, proficiency, and domain using relevant query parameters.`,
+      You can filter skills by category, proficiency, and domain using relevant query parameters.
+      Additionally, you can paginate through the results using the 'page' and 'pageSize' parameters.`,
     Params: [
       {
         id: 0,
@@ -108,8 +109,22 @@ export const Docs: Documentation[] = [
         description: "Filter skills by the specified domain.",
         enums: ["Dev", "Design", "Music"],
       },
+      {
+        id: 3,
+        title: "Page",
+        param: "page",
+        description:
+          "Specify the page number for paginated results. Default is 1.",
+      },
+      {
+        id: 4,
+        title: "PageSize",
+        param: "pageSize",
+        description:
+          "Specify the number of skills to include per page. Default is 10.",
+      },
     ],
-    Note: `You can use any combination of Category, Proficiency, and Domain Params.`,
+    Note: `if you dont provide a page and pageSize you will get a result of the default values that are respectively 1 and 10 as in first page and 10 elements per page`,
   },
   {
     title: "Skill Check",

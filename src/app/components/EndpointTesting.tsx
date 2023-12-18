@@ -4,6 +4,7 @@ import EndpointConsole from "./EndpointConsole";
 import CodeBlock from "./CodeBlock";
 import ResponseJson from "@/app/components/ResponseJson";
 import { getAnything, getBaseUrl } from "../services/api";
+import LoadingCompo from "@/app/components/LoadingCompo";
 export default function EndpointTesting({
   method,
   endpoint,
@@ -28,6 +29,7 @@ export default function EndpointTesting({
   }, []);
 
   async function handleSubmit() {
+    console.log(`/${endpoint}` + paramQuery);
     getAnything(`/${endpoint}` + paramQuery).then((resp) => {
       setResponse(JSON.stringify(resp, null, 5));
       setLaoded(true);
@@ -35,7 +37,7 @@ export default function EndpointTesting({
   }
   return (
     <>
-      {Loaded && (
+      {Loaded ? (
         <div className="grid gap-10">
           <CodeBlock method="get" url={url + paramQuery} />
           <EndpointConsole
@@ -48,6 +50,8 @@ export default function EndpointTesting({
           />
           <ResponseJson code={response} />
         </div>
+      ) : (
+        <LoadingCompo />
       )}
     </>
   );

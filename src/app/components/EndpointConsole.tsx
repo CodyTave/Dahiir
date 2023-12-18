@@ -96,7 +96,13 @@ export default function EndpointConsole({
             </div>
           )}
         </div>
-        <div className="flex bg-light-2 p-3 xs:px-5 px-1 rounded-md w-full font-sans font-medium">
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            send();
+          }}
+          className="flex bg-light-2 p-3 xs:px-5 px-1 rounded-md w-full font-sans font-medium"
+        >
           <span className="xs:text-base text-xs shrink-0 line-clamp-1">
             {endpoint}
           </span>
@@ -107,7 +113,7 @@ export default function EndpointConsole({
               className="bg-light-2 focus:outline-none text-green-0 w-full xs:text-base text-xs"
             />
           )}
-        </div>
+        </form>
         <button
           onClick={send}
           className="px-6 py-2 bg-green-0 text-light-0 font-semibold rounded-md hover:bg-green-0/90 transall"

@@ -9,6 +9,7 @@ enum domain {
   DEV = "Dev",
   DESIGN = "Design",
   MUSIC = "Music",
+  OTHER = "Other",
 }
 enum category {
   PROGRAMMING_LANGUAGE = "ProgrammingLanguage",
