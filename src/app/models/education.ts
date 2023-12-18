@@ -4,6 +4,7 @@ enum level {
   HIGHSCHOOL = "HighSchool",
   COLLEGE = "College",
   UNIVERSITY = "University",
+  OTHER = "Other",
 }
 
 interface education extends Document {

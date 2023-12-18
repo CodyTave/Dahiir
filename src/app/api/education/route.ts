@@ -9,19 +9,18 @@ export async function GET(req: NextRequest) {
   const Level = req.nextUrl.searchParams.get("Level");
   const Certificates = req.nextUrl.searchParams.get("Certificates");
   const Latest = req.nextUrl.searchParams.get("Latest");
-  const query = Level? { level: Level }: Certificates? { isCerificate: Certificates }: {};
+  const query = Level ? { level: Level } : Certificates ? { isCertificate: Certificates } : {};
   try {
     await dbConnect();
     if (Level && Certificates) {
-      return Response.json({ Status:"You can't Provide Level and Certificates Params at the same time, Read Documentation..." },{ status: 400 });
+      return Response.json({ Status: "You can't Provide Level and Certificates Params at the same time, Read Documentation..." }, { status: 400 });
     }
     if (Latest) {
-      const CertifsCheck = Certificates ? { isCerificate: Certificates } :{}
-      const mostRecent = await EducationModel.findOne(CertifsCheck,{ level: 0 ,isCerificate:0 },{ sort: { graduationYear: -1 }}
-      );
+      const CertifsCheck = Certificates ? { isCertificate: Certificates } : {};
+      const mostRecent = await EducationModel.findOne(CertifsCheck, { level: 0, isCertificate: 0 }, { sort: { graduationYear: -1 } });
       return Response.json(mostRecent);
     }
-    const education = await EducationModel.find(query, { level: 0 ,isCerificate:0 });
+    const education = await EducationModel.find(query, { level: 0, isCertificate: 0 }).sort({ graduationYear: 1 }); // Use 1 for ascending order or -1 for descending order
     return Response.json(education);
   } catch (error: any) {
     return Response.json({ Status: "Something went Wrong" }, { status: 500 });

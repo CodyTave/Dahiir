@@ -19,10 +19,16 @@ export async function GET(req: NextRequest) {
   try {
     await dbConnect();
     if (Year && Current) {
-      return Response.json({ Status:"You can't Provide Current and Year Params at the same time, Read Documentation..." },{ status: 400 });
+      return Response.json({ Status: "You can't Provide Current and Year Params at the same time, Read Documentation..." }, { status: 400 });
     }
-    const education = await ExperienceModel.find(query);
-    return Response.json(education);
+    const experiences = await ExperienceModel.find(query);
+
+    const experiencesWithUpdatedDuration = experiences.map(experience => {
+      const duration = getDuration(experience.startDate, experience.endDate);
+      return { ...experience.toObject(), duration };
+    });
+
+    return Response.json(experiencesWithUpdatedDuration);
   } catch (error: any) {
     return Response.json({ Status: "Something went Wrong" }, { status: 500 });
   }
@@ -38,7 +44,6 @@ export async function POST(req: Request) {
     if(!experience.endDate){
       experience.endDate=null
     }    
-    experience.duration = getDuration(experience.startDate,experience.endDate)
     const newEducationData = new ExperienceModel(experience);
     const savedEducationData = await newEducationData.save();
     return Response.json(savedEducationData, {
